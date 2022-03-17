@@ -1,0 +1,72 @@
+@charset "utf-8";
+@import 'style.css';
+
+a {
+    text-decoration-line: none;
+    text-decoration: none;
+}
+a:link {
+    /* 방문 전 색깔 */
+    color: black;
+}
+a:visited {
+    /* 방문 후 색깔 */
+    color: black;
+}
+a:hover {
+    font-weight: 700;
+}
+
+.login_box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15vw;
+}
+
+.login_input {
+    width: 15vw;
+    height: 2vw;
+    font-size: 1.2rem;
+    padding-left: 2rem; /* input창 앞에 띄우기 */
+    border-radius: 50vw; /* input창 둥글게 */
+    border-color: black;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 3vw;
+    /* border: none; */
+}
+
+.login_input:hover {
+    font-weight: 700;
+}
+
+.font_box {
+    display: flex;
+    justify-content: flex-start;
+    width: 15vw;
+}
+
+.login_button {
+    margin-top: 2vw;
+    width: 17vw;
+    height: 2vw;
+    background-color: rgb(52, 152, 219);
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1vw;
+}
+
+.login_button:hover {
+    font-weight: 700;
+}
+
+.find {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 17vw;
+    margin-top: 3vw;
+}

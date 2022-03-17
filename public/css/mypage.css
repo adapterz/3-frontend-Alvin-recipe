@@ -1,0 +1,160 @@
+@charset "utf-8";
+@import 'style.css';
+@import 'index.css';
+
+p {
+    font-weight: 700;
+}
+
+a {
+    text-decoration-line: none;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: 700;
+}
+
+input:hover {
+    font-weight: 700;
+}
+
+.mypage_box {
+    display: flex;
+    margin-top: 3vw;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mypage_input {
+    width: 15vw;
+    height: 2vw;
+    padding-left: 2rem; /* input창 앞에 띄우기 */
+    border-radius: 0.5vw; /* input창 둥글게 */
+    border-color: black;
+    font-size: 0.7vw;
+    outline: none;
+    margin-top: -0.5vw;
+    margin-bottom: 2vw;
+}
+
+.font_box {
+    display: flex;
+    justify-content: space-between;
+    width: 17vw;
+}
+
+.check_font {
+    background-color: white;
+    border: none;
+    font-size: 1rem;
+}
+
+.button_box {
+    display: flex;
+    justify-content: space-around;
+    width: 17vw;
+    margin-bottom: 2vw;
+}
+
+.edit_button {
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    width: 7vw;
+    height: 2vw;
+    background-color: rgb(52, 152, 219);
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1vw;
+}
+
+.delete_button {
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    width: 7vw;
+    height: 2vw;
+    background-color: rgb(190, 190, 190);
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1vw;
+}
+
+.delete_button:hover {
+    font-weight: 700;
+}
+
+.mypage_profile_icon {
+    font-size: 2vw;
+    margin-bottom: 2vw;
+    border-radius: 50vw;
+}
+
+.mypage_move_font {
+    font-size: 1vw;
+}
+
+.mypage_post_font {
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.mypage_comment_font {
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.post_count_box {
+    display: flex;
+    justify-content: flex-start;
+    width: 80vw;
+    margin-top: -1vw;
+}
+
+.comment_card {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2vw;
+    width: 50vw;
+    height: 10vw;
+}
+
+.comment_box {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 10vw;
+}
+
+.like_box {
+    display: flex;
+    width: 10vw;
+    height: 10vw;
+    font-size: 1.5vw;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.title_box {
+    display: flex;
+    width: 40vw;
+    height: 2.5vw;
+    align-items: center;
+    font-size: 1vw;
+}
+
+.comment_content_box {
+    display: flex;
+    width: 40vw;
+    height: 5vw;
+    border: none;
+}
+
+.comment_registration {
+    display: flex;
+    width: 40vw;
+    height: 2.5vw;
+    align-items: center;
+}

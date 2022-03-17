@@ -1,0 +1,86 @@
+@charset "utf-8";
+@import 'style.css';
+
+p {
+    font-weight: 700;
+}
+
+a {
+    text-decoration-line: none;
+    text-decoration: none;
+}
+a:link {
+    /* 방문 전 색깔 */
+    color: black;
+}
+a:visited {
+    /* 방문 후 색깔 */
+    color: black;
+}
+a:hover {
+    font-weight: 700;
+}
+
+input:hover {
+    font-weight: 700;
+}
+
+img {
+    max-width: 6vw;
+}
+.signup_box {
+    display: flex;
+    margin-top: 10vw;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+}
+
+.signup_input {
+    width: 15vw;
+    height: 2vw;
+    font-size: 1.2rem;
+    padding-left: 2rem; /* input창 앞에 띄우기 */
+    border-radius: 0.5vw; /* input창 둥글게 */
+    border-color: black;
+    font-size: 1rem;
+    outline: none;
+    margin-top: -0.5vw;
+    margin-bottom: 2vw;
+}
+
+.font_box {
+    display: flex;
+    justify-content: space-between;
+    width: 17vw;
+}
+
+.check_font {
+    background-color: white;
+    border: none;
+    font-size: 1rem;
+}
+
+.image {
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    width: 100%;
+    height: auto;
+    border-radius: 50vw;
+}
+
+.signup_button {
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    width: 17vw;
+    height: 2vw;
+    background-color: rgb(52, 152, 219);
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 1vw;
+}
+
+.signup_button:hover {
+    font-weight: 700;
+}

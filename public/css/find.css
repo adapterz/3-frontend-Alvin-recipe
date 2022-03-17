@@ -1,0 +1,48 @@
+@charset "utf-8";
+@import 'style.css';
+
+.find_box {
+    display: flex;
+    margin-top: 20vw;
+    align-items: center;
+    flex-direction: column;
+}
+
+.find_input {
+    width: 15vw;
+    height: 2vw;
+    font-size: 1.2rem;
+    padding-left: 2rem; /* input창 앞에 띄우기 */
+    border-radius: 0.5vw; /* input창 둥글게 */
+    border-color: black;
+    font-size: 1rem;
+    outline: none;
+}
+
+.font_box {
+    display: flex;
+    justify-content: flex-start;
+    width: 17vw;
+}
+
+.font_guide {
+    display: flex;
+    justify-content: flex-start;
+    width: 17vw;
+    color: gray;
+}
+
+.push {
+    display: flex;
+    justify-content: flex-end;
+    width: 17vw;
+}
+
+.push_font {
+    background-color: white;
+    border: none;
+}
+
+input:hover {
+    font-weight: 700;
+}
