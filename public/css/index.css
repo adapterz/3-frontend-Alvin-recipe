@@ -94,17 +94,6 @@
     font-size: 1.3vw;
 }
 
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 20vh;
-    bottom: 0;
-    background-color: black;
-    color: white;
-}
-
 @media (max-width: 400px) {
     .search_box {
         margin-top: 10vh;
@@ -112,7 +101,7 @@
     }
     .search_input {
         width: 70vw;
-        font-size: 8px;
+        font-size: 13px;
         height: 3vh;
     }
     .search_button {

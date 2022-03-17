@@ -38,12 +38,11 @@ img {
 
 .signup_input {
     width: 15vw;
-    height: 2vw;
-    font-size: 1.2rem;
+    height: 3vh;
+    font-size: 16px;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
     border-color: black;
-    font-size: 1rem;
     outline: none;
     margin-top: -0.5vw;
     margin-bottom: 2vw;
@@ -61,26 +60,51 @@ img {
     font-size: 1rem;
 }
 
-.image {
-    margin-top: 2vw;
-    margin-bottom: 2vw;
-    width: 100%;
-    height: auto;
-    border-radius: 50vw;
-}
-
 .signup_button {
     margin-top: 2vw;
     margin-bottom: 5vw;
     width: 17vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(52, 152, 219);
     color: white;
-    font-size: 1.2rem;
+    font-size: 1vw;
     border: none;
     border-radius: 1vw;
 }
 
 .signup_button:hover {
     font-weight: 700;
+}
+
+.input_file {
+    display: none;
+}
+
+.input_file_button {
+    font-size: 1vw;
+    cursor: pointer;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
+
+.input_file_button:hover {
+    font-weight: 700;
+}
+
+@media (max-width: 400px) {
+    .signup_box {
+        margin-top: 15vh;
+    }
+    .font_box {
+        width: 80vw;
+    }
+    .signup_input {
+        width: 70vw;
+        border: 1px solid gray;
+        border-radius: 2vw;
+    }
+    .profile_icon {
+        margin-top: 3vh;
+        font-size: 7vw;
+    }
 }

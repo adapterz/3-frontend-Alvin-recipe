@@ -1,45 +1,24 @@
 @charset "utf-8";
 @import 'style.css';
 
-a {
-    text-decoration-line: none;
-    text-decoration: none;
-}
-a:link {
-    /* 방문 전 색깔 */
-    color: black;
-}
-a:visited {
-    /* 방문 후 색깔 */
-    color: black;
-}
-a:hover {
-    font-weight: 700;
-}
-
 .login_box {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    margin-top: 15vw;
+    margin-top: 30vh;
 }
 
 .login_input {
     width: 15vw;
-    height: 2vw;
-    font-size: 1.2rem;
-    padding-left: 2rem; /* input창 앞에 띄우기 */
+    height: 3vh;
+    font-size: 1vw;
+    padding-left: 2vw; /* input창 앞에 띄우기 */
     border-radius: 50vw; /* input창 둥글게 */
     border-color: black;
-    font-size: 1rem;
+    font-size: 16px;
     outline: none;
     margin-bottom: 3vw;
-    /* border: none; */
-}
-
-.login_input:hover {
-    font-weight: 700;
 }
 
 .font_box {
@@ -51,16 +30,12 @@ a:hover {
 .login_button {
     margin-top: 2vw;
     width: 17vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(52, 152, 219);
     color: white;
-    font-size: 1.2rem;
+    font-size: 1vw;
     border: none;
     border-radius: 1vw;
-}
-
-.login_button:hover {
-    font-weight: 700;
 }
 
 .find {
@@ -69,4 +44,24 @@ a:hover {
     align-items: center;
     width: 17vw;
     margin-top: 3vw;
+}
+
+@media (max-width: 400px) {
+    .login_input {
+        width: 70vw;
+        font-size: 13px;
+        padding-left: 5vw;
+    }
+    .font_box {
+        width: 70vw;
+    }
+    .login_button {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    .find {
+        width: 70vw;
+        font-size: 13px;
+        margin-bottom: 5vh;
+    }
 }
