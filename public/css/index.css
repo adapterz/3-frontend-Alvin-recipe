@@ -1,0 +1,148 @@
+@import 'style.css';
+
+.search_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vw;
+    position: relative;
+}
+
+.search_input {
+    width: 30vw;
+    height: 2vw;
+    font-size: 1.2rem;
+    padding-left: 2rem; /* input창 앞에 띄우기 */
+    border-radius: 50vw; /* input창 둥글게 */
+    border-color: black;
+    outline: none;
+}
+
+.search_button {
+    position: absolute;
+    right: 36vw;
+    background-color: white;
+    border: none;
+}
+
+.search_icon {
+    font-size: 1vw;
+    height: auto;
+    width: auto;
+}
+
+.body_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 2vw;
+    margin-bottom: 4vw;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.content_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2vw;
+    margin-bottom: 4vw;
+    align-items: center;
+    width: 70vw;
+    flex-wrap: wrap;
+}
+
+.card_box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 15vw;
+    height: 20vw;
+    margin-bottom: 5vh;
+}
+
+.image_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 13vw;
+    height: 13vw;
+}
+
+.text_box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1vw;
+    width: 13vw;
+    height: 2vw;
+}
+
+.like_comment_box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 5vw;
+    height: 2vw;
+    white-space: nowrap;
+}
+
+.like_comment_image {
+    font-size: 1.3vw;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 20vh;
+    bottom: 0;
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 400px) {
+    .search_box {
+        margin-top: 10vh;
+        height: 3vh;
+    }
+    .search_input {
+        width: 70vw;
+        font-size: 8px;
+        height: 3vh;
+    }
+    .search_button {
+        right: 14vw;
+    }
+    .body_box {
+        flex-wrap: wrap;
+    }
+    .content_box {
+        width: 380px;
+    }
+    .card_box {
+        width: 180px;
+        height: 380px;
+    }
+    .image_box {
+        width: 160px;
+        height: 220px;
+        margin-bottom: 1vh;
+        border: 1px solid black;
+    }
+    .text_box {
+        width: 180px;
+        height: auto;
+        flex-wrap: nowrap;
+    }
+    .like_comment_box {
+        width: 90px;
+    }
+    .like_comment_image {
+        font-size: 20px;
+    }
+}
