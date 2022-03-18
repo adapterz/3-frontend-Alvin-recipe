@@ -160,9 +160,11 @@
     }
     .edit_button {
         width: 25vw;
+        border-radius: 2vw;
     }
     .delete_button {
         width: 25vw;
+        border-radius: 2vw;
     }
     .comment_card {
         width: 90vw;

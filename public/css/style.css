@@ -139,8 +139,7 @@ textarea {
     bottom: 0;
     background-color: black;
     color: white;
-    position: relative;
-    transform: translateY();
+    /* position: absolute; */
 }
 
 @media (max-width: 400px) {

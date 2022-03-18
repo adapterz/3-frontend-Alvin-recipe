@@ -3,19 +3,20 @@
 
 .find_box {
     display: flex;
-    margin-top: 20vw;
+    margin-top: 20vh;
     align-items: center;
     flex-direction: column;
+    height: 55vh;
 }
 
 .find_input {
     width: 15vw;
-    height: 2vw;
-    font-size: 1.2rem;
+    height: 3vh;
+    font-size: 16px;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
     border-color: black;
-    font-size: 1rem;
+
     outline: none;
 }
 
@@ -45,4 +46,21 @@
 
 input:hover {
     font-weight: 700;
+}
+
+@media (max-width: 400px) {
+    .font_box {
+        width: 70vw;
+    }
+    .font_guide {
+        font-size: 13px;
+        width: 70vw;
+    }
+    .find_input {
+        width: 70vw;
+        border-radius: 2vw;
+    }
+    .push {
+        width: 80vw;
+    }
 }
