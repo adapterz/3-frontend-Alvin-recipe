@@ -2,40 +2,23 @@
 @import 'style.css';
 @import 'index.css';
 
-p {
-    font-weight: 700;
-}
-
-a {
-    text-decoration-line: none;
-    text-decoration: none;
-}
-
-a:hover {
-    font-weight: 700;
-}
-
-input:hover {
-    font-weight: 700;
-}
-
 .mypage_box {
     display: flex;
-    margin-top: 3vw;
+    margin-top: 5vh;
     align-items: center;
     flex-direction: column;
 }
 
 .mypage_input {
     width: 15vw;
-    height: 2vw;
+    height: 3vh;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
     border-color: black;
     font-size: 0.7vw;
     outline: none;
-    margin-top: -0.5vw;
-    margin-bottom: 2vw;
+    margin-top: -1vh;
+    margin-bottom: 3vh;
 }
 
 .font_box {
@@ -47,36 +30,36 @@ input:hover {
 .check_font {
     background-color: white;
     border: none;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .button_box {
     display: flex;
     justify-content: space-around;
     width: 17vw;
-    margin-bottom: 2vw;
+    margin-bottom: 3vh;
 }
 
 .edit_button {
-    margin-top: 2vw;
-    margin-bottom: 5vw;
+    margin-top: 3vh;
+    margin-bottom: 8vh;
     width: 7vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(52, 152, 219);
     color: white;
-    font-size: 1.2rem;
+    font-size: 16px;
     border: none;
     border-radius: 1vw;
 }
 
 .delete_button {
-    margin-top: 2vw;
-    margin-bottom: 5vw;
+    margin-top: 3vh;
+    margin-bottom: 8vh;
     width: 7vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(190, 190, 190);
     color: white;
-    font-size: 1.2rem;
+    font-size: 16px;
     border: none;
     border-radius: 1vw;
 }
@@ -87,21 +70,21 @@ input:hover {
 
 .mypage_profile_icon {
     font-size: 2vw;
-    margin-bottom: 2vw;
+    margin-bottom: 3vh;
     border-radius: 50vw;
 }
 
 .mypage_move_font {
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 .mypage_post_font {
-    font-size: 1vw;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .mypage_comment_font {
-    font-size: 1vw;
+    font-size: 16px;
     font-weight: 700;
 }
 
@@ -109,7 +92,7 @@ input:hover {
     display: flex;
     justify-content: flex-start;
     width: 80vw;
-    margin-top: -1vw;
+    margin-top: -2vh;
 }
 
 .comment_card {
@@ -117,21 +100,21 @@ input:hover {
     justify-content: flex-start;
     margin-top: 2vw;
     width: 50vw;
-    height: 10vw;
+    height: 20vh;
 }
 
 .comment_box {
     display: flex;
     flex-direction: column;
     width: 40vw;
-    height: 10vw;
+    height: 20vh;
 }
 
 .like_box {
     display: flex;
     width: 10vw;
-    height: 10vw;
-    font-size: 1.5vw;
+    height: 20vh;
+    font-size: 25px;
     align-items: center;
     text-align: center;
     justify-content: space-around;
@@ -140,7 +123,7 @@ input:hover {
 .title_box {
     display: flex;
     width: 40vw;
-    height: 2.5vw;
+    height: 5vh;
     align-items: center;
     font-size: 1vw;
 }
@@ -148,13 +131,59 @@ input:hover {
 .comment_content_box {
     display: flex;
     width: 40vw;
-    height: 5vw;
+    height: 10vh;
     border: none;
 }
 
 .comment_registration {
     display: flex;
     width: 40vw;
-    height: 2.5vw;
+    height: 5vh;
     align-items: center;
+}
+
+@media (max-width: 400px) {
+    .mypage_input {
+        width: 70vw;
+        border: 1px solid gray;
+        border-radius: 2vw;
+        font-size: 13px;
+    }
+    .button_box {
+        width: 70vw;
+    }
+    .font_box {
+        width: 80vw;
+    }
+    .mypage_profile_icon {
+        font-size: 5vw;
+    }
+    .edit_button {
+        width: 25vw;
+    }
+    .delete_button {
+        width: 25vw;
+    }
+    .comment_card {
+        width: 90vw;
+    }
+    .comment_box {
+        width: 70vw;
+    }
+    .like_box {
+        width: 20vw;
+        font-size: 16px;
+    }
+    .title_box {
+        width: 70vw;
+        font-size: 13px;
+    }
+    .comment_content_box {
+        width: 70vw;
+        font-size: 13px;
+    }
+    .comment_registration {
+        width: 70vw;
+        font-size: 13px;
+    }
 }
