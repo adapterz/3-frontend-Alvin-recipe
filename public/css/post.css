@@ -86,6 +86,7 @@ textarea:focus {
     }
     .confirm_box {
         width: 80vw;
+        margin-bottom: 3vh;
     }
     .confirm_button {
         width: 20vw;
@@ -98,6 +99,7 @@ textarea:focus {
         font-size: 13px;
     }
     .input_file_button {
+        margin-top: 2vh;
         width: 20vw;
         border-radius: 2vw;
         font-size: 13px;
