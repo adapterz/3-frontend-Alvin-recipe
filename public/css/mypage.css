@@ -7,16 +7,17 @@
     margin-top: 5vh;
     align-items: center;
     flex-direction: column;
-    height: 60vh;
+    min-height: 60vh;
+    height: auto;
 }
 
 .mypage_input {
     width: 15vw;
-    height: 3vh;
+    height: 4vh;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
     border-color: black;
-    font-size: 0.7vw;
+    font-size: 16px;
     outline: none;
     margin-top: -1vh;
     margin-bottom: 3vh;

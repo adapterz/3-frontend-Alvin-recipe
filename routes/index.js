@@ -7,19 +7,19 @@ router.get('/', function (req, res) {
 });
 
 router.get('/account/login', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/login.html'));
+    res.sendFile(path.join(__dirname, '../public/html/login.html'));
 });
 
 router.get('/account/signup', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/signup.html'));
+    res.sendFile(path.join(__dirname, '../public/html/signup.html'));
 });
 
 router.get('/account/find/id', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/id_find.html'));
+    res.sendFile(path.join(__dirname, '../public/html/id_find.html'));
 });
 
 router.get('/account/find/pw', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/password_find.html'));
+    res.sendFile(path.join(__dirname, '../public/html/password_find.html'));
 });
 
 router.get('/account/mypage', function (req, res) {
