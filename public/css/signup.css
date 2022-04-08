@@ -102,6 +102,7 @@ img {
         width: 70vw;
         border: 1px solid gray;
         border-radius: 2vw;
+        font-size: 13px;
     }
     .profile_icon {
         margin-top: 3vh;

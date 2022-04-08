@@ -16,31 +16,30 @@
 
 .writer_font {
     font-weight: 700;
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 .registration_box {
     display: flex;
     justify-content: space-between;
     width: 50vw;
-    margin-top: -2vw;
-    margin-bottom: 2vw;
+    margin-top: -2vh;
+    margin-bottom: 2vh;
 }
 
 .registration_font {
-    font-size: 0.8vw;
+    font-size: 13px;
 }
 
 .title_font {
-    font-size: 1vw;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .content_textarea {
     width: 40vw;
-    height: 30vw;
-    font-size: 1vw;
-    /* margin-bottom: 2vw; */
+    height: 50vh;
+    font-size: 16px;
 }
 
 .start_box {
@@ -48,8 +47,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 40vw;
-    height: 3vw;
-    margin-top: 1vw;
+    height: 3vh;
+    margin-top: 1vh;
 }
 
 .count_box {
@@ -58,40 +57,18 @@
     align-items: center;
     text-align: center;
     width: 8vw;
-    height: 2vw;
+    height: 2vh;
 }
 
 .icon_size {
     font-size: 2vw;
 }
 
-.top_line {
-    width: 90vw;
-    height: 1px;
-    margin-top: 7vw;
-    background-color: gray;
-    margin-bottom: 2vw;
-}
-
-.line {
-    width: 90vw;
-    height: 1px;
-    margin-top: 3vw;
-    background-color: gray;
-    margin-bottom: 2vw;
-}
-
-.line_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .comment_card {
     display: flex;
     align-items: center;
     width: 50vw;
-    height: 11vw;
+    height: 15vh;
 }
 
 .image_box {
@@ -99,7 +76,7 @@
     justify-content: center;
     align-items: center;
     width: 5vw;
-    height: 10vw;
+    height: 10vh;
 }
 
 .comment_right {
@@ -108,7 +85,7 @@
     align-items: center;
     flex-direction: column;
     width: 45vw;
-    height: 10vw;
+    height: 10vh;
 }
 
 .comment_id {
@@ -116,7 +93,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 45vw;
-    height: 3vw;
+    height: 3vh;
 }
 
 .comment_id_box {
@@ -124,7 +101,7 @@
     justify-content: center;
     align-items: center;
     width: 8vw;
-    height: 3vw;
+    height: 3vh;
     white-space: nowrap;
 }
 
@@ -133,12 +110,12 @@
     justify-content: space-between;
     align-items: center;
     width: 45vw;
-    height: 6vw;
+    height: 12vh;
 }
 
 .comment_textarea {
     width: 45vw;
-    height: 6vw;
+    height: 12vh;
     border: none;
 }
 
@@ -147,17 +124,17 @@
     justify-content: flex-start;
     align-items: center;
     width: 45vw;
-    height: 2vw;
+    height: 2vh;
 }
 
 .comment_registration_textarea {
     width: 39vw;
-    height: 6vw;
+    height: 9vh;
 }
 
 .comment_registration_button {
     width: 5vw;
-    height: 6vw;
+    height: 9vh;
     background-color: white;
     border: 1px solid black;
 }
@@ -167,7 +144,7 @@
     justify-content: flex-end;
     align-items: center;
     width: 29vw;
-    height: 3vw;
+    height: 4vh;
 }
 
 .comment_registration_edit_box {
@@ -175,12 +152,12 @@
     justify-content: space-around;
     align-items: center;
     width: 15vw;
-    height: 3vw;
+    height: 4vh;
 }
 
 .comment_registration_edit_button {
     width: 5vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(224, 224, 224);
     border: none;
     border-radius: 1vw;
@@ -188,9 +165,61 @@
 
 .comment_registration_delete_button {
     width: 5vw;
-    height: 2vw;
+    height: 3vh;
     background-color: rgb(52, 152, 219);
     border: none;
     border-radius: 1vw;
     color: white;
+}
+
+@media (max-width: 400px) {
+    .content_textarea,
+    .start_box {
+        width: 70vw;
+    }
+    .count_box {
+        width: 20vw;
+    }
+    .icon_size {
+        font-size: 4vw;
+    }
+    .comment_card {
+        width: 90vw;
+        height: 20vh;
+    }
+    .image_box {
+        width: 10vw;
+    }
+    .writer_box,
+    .registration_box,
+    .comment_right,
+    .comment_id,
+    .comment_content,
+    .comment_registrationDate {
+        width: 80vw;
+    }
+    .comment_id_box {
+        width: 30vw;
+        font-size: 13px;
+    }
+    .comment_registration_box {
+        width: 30vw;
+    }
+    .comment_registration_edit_box {
+        width: 30vw;
+    }
+    .comment_registration_edit_button,
+    .comment_registration_delete_button {
+        width: 10vw;
+    }
+    .comment_textarea {
+        width: 80vw;
+        height: 10vh;
+    }
+    .comment_registration_button {
+        width: 20vw;
+    }
+    .comment_registration_textarea {
+        width: 55vw;
+    }
 }

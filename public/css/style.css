@@ -50,7 +50,7 @@ textarea {
     resize: none;
 }
 
-.header_color {
+.header {
     display: flex;
     width: 100vw;
     justify-content: center;
