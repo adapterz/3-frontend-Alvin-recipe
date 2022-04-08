@@ -65,6 +65,8 @@ signup_btn.onclick = function () {
     if (!email) return alert('이메일을 입력해 주세요.');
     if (!authNumber) return alert('인증번호를 입력해 주세요.');
 
+    if (pw !== pw_check) return alert('비밀번호를 확인해 주세요.');
+
     fetch('http://localhost:3000/users/', {
         method: 'POST',
         headers: {
@@ -79,15 +81,15 @@ signup_btn.onclick = function () {
             userEmail: email
         })
     })
-        .then(res => res.json())
         .then(data => {
             if (data.status == 201) {
                 alert('회원가입 완료');
-                window.open('/');
+                location.href = '/';
             } else {
                 console.log(data);
             }
-        });
+        })
+        .catch(err => console.error(err));
 };
 // login_btn.onclick = function () {
 //     let id = document.querySelector('#id').value;

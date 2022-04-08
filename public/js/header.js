@@ -1,6 +1,13 @@
 import './footer.js';
+import { displayImage, cookieUserId } from './component.js';
 
-let login = 0;
+let login;
+
+if (cookieUserId == undefined) {
+    login = 0;
+} else if (cookieUserId !== undefined) {
+    login = 1;
+}
 const headClass = document.querySelector('.header');
 const logoDivTag = document.createElement('div');
 const logoATag = document.createElement('a');
@@ -33,17 +40,21 @@ if (login == 0) {
 } else {
     const postATag = document.createElement('a');
     const mypageATag = document.createElement('a');
-    const postIcon = document.createElement('i');
-    const mypageIcon = document.createElement('i');
+    // const postIcon = document.createElement('i');
+    // const mypageIcon = document.createElement('i');
+    const postIcon = displayImage('../image/plus2.png');
+    const mypageIcon = displayImage('../image/profile.png');
+    postIcon.classList.add('icon');
+    mypageIcon.classList.add('icon');
 
     navDivTag.prepend(postATag);
     navDivTag.append(mypageATag);
 
     postATag.prepend(postIcon);
     postATag.href = '/post/registration';
-    postIcon.setAttribute('class', 'fa-solid fa-plus profile_icon');
+    // postIcon.setAttribute('class', 'fa-solid fa-plus profile_icon');
 
     mypageATag.prepend(mypageIcon);
     mypageATag.href = '/account/mypage';
-    mypageIcon.setAttribute('class', 'fa-regular fa-user profile_icon');
+    // mypageIcon.setAttribute('class', 'fa-regular fa-user profile_icon');
 }

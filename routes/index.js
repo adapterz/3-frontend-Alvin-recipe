@@ -39,7 +39,7 @@ router.get('/login_index', function (req, res) {
 });
 
 router.get('/post/registration', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/html/post.html'));
+    res.sendFile(path.join(__dirname, '../public/html/post_registration.html'));
 });
 
 router.get('/post/edit', function (req, res) {

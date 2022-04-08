@@ -50,6 +50,11 @@ textarea {
     resize: none;
 }
 
+.icon {
+    width: 1.3vw;
+    height: auto;
+}
+
 .header {
     display: flex;
     width: 100vw;
@@ -143,7 +148,11 @@ textarea {
     transform: translateY();
 }
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
+    img {
+        width: 5.5vw;
+        height: auto;
+    }
     .header_color {
         padding-top: 3vh;
     }
