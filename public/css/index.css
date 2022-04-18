@@ -13,6 +13,11 @@ main {
     flex-wrap: wrap;
 }
 
+.image_box:hover,
+.text_box:hover {
+    cursor: pointer;
+}
+
 .search_box {
     display: flex;
     align-items: center;

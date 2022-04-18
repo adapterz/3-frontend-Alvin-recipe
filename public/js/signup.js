@@ -13,7 +13,7 @@ auth_push_btn.onclick = function () {
 
     if (!email) return alert('이메일을 입력해 주세요.');
 
-    fetch('http://localhost:3000/users/auth/email', {
+    fetch('http://localhost:3000/users/auth-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ signup_btn.onclick = function () {
 
     if (pw !== pw_check) return alert('비밀번호를 확인해 주세요.');
 
-    fetch('http://localhost:3000/users/', {
+    fetch('http://localhost:3000/users/signup', {
         method: 'POST',
         headers: {
             Accept: 'application/json',

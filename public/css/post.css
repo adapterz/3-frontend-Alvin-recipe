@@ -6,12 +6,35 @@ textarea:focus {
     outline: none;
 }
 
+/* div에서 placeholder 사용하기 위해서*/
+[contentEditable='true']:empty:not(:focus):before {
+    content: attr(placeholder);
+    color: gray;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.content {
+    width: 40vw;
+    height: 50vh;
+    font-size: 16px;
+    border: solid 1px black;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-y: scroll;
+}
+
 .post_box {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 3vh;
+    min-height: 60vh;
 }
 
 .title_input {
@@ -24,14 +47,17 @@ textarea:focus {
     border: none;
 }
 
-.content_textarea {
-    width: 40vw;
-    height: 50vh;
-    font-size: 16px;
-}
-
 .input_file {
     display: none;
+}
+
+.image_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 40vw;
+    height: 40vw;
 }
 
 .input_file_button {
@@ -44,7 +70,7 @@ textarea:focus {
     border-radius: 1vw;
     color: white;
     cursor: pointer;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
     text-align: center;
 }
 
@@ -81,7 +107,7 @@ textarea:focus {
 }
 
 @media (max-width: 400px) {
-    .content_textarea {
+    .content {
         width: 80vw;
     }
     .confirm_box {

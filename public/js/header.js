@@ -1,11 +1,11 @@
 import './footer.js';
-import { displayImage, cookieUserId } from './component.js';
+import { displayImage, cookieUserId, cookieUserNickname } from './component.js';
 
 let login;
 
-if (cookieUserId == undefined) {
+if (cookieUserNickname == undefined) {
     login = 0;
-} else if (cookieUserId !== undefined) {
+} else if (cookieUserNickname !== undefined) {
     login = 1;
 }
 const headClass = document.querySelector('.header');

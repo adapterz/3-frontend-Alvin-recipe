@@ -11,7 +11,7 @@ email_send_btn.onclick = function () {
 
     if (!email) return alert('이메일을 입력해 주세요.');
 
-    fetch('http://localhost:3000/users/findpassword', {
+    fetch('http://localhost:3000/users/find-password', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
