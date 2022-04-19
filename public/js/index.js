@@ -45,8 +45,8 @@ for (let i = 0; i < postData.length; i++) {
     commentCountBox.prepend(commentIcon);
     commentCountBox.append(commentCount);
     imageboxDivTag.appendChild(thumbnail);
-    likeCount.textContent = postData.results[i].like + ' 개';
-    commentCount.textContent = postData.results[i].comment + ' 개';
+    likeCount.textContent = `${postData.results[i].like} 개`;
+    commentCount.textContent = `${postData.results[i].comment} 개`;
 
     cardboxDivTag.classList.add('card_box');
     imageboxDivTag.classList.add('image_box');

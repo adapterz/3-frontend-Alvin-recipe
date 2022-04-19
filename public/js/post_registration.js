@@ -47,37 +47,6 @@ const uploadFile = async function (file) {
     return data;
 };
 
-//업로드 이미지 미리보기
-// imageUploadBtn.addEventListener('change', async function (e) {
-//     // console.log(e.target.files.length);
-//     for (let i = 0; i < imageUploadBtn.files.length; i++) {
-//         let reader = new FileReader();
-//         reader.onload = function (e) {
-//             let img = document.createElement('img');
-//             img.setAttribute('src', e.target.result);
-//             document.querySelector('#contents').appendChild(img);
-//         };
-//         reader.readAsDataURL(e.target.files[i]);
-//     }
-// });
-
-//업로드 버튼 클릭시 실행 함수
-// const uploadFile = async function (file) {
-//     const formData = new FormData();
-//     formData.append('image', file);
-
-//     await fetch('http://localhost:3000/posts/image-upload', {
-//         method: 'POST',
-//         body: formData
-//     })
-//         .then(res => res.json())
-//         .then(data => {
-//             images.push(data.imageIndexId[0]); // 데이터베이스에 저장된 indexID 배열에 푸쉬
-//             console.log(data.imageURLs);
-//         })
-//         .catch(err => console.error(err));
-// };
-
 //등록 버튼 클릭 시 발생 이벤트
 registrationBtn.addEventListener('click', async function () {
     if (cookieUserNickname == undefined) return alert('로그인 후 이용해 주세요.');
