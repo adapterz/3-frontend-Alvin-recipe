@@ -26,10 +26,6 @@ a:hover {
     font-weight: 700;
 }
 
-hr {
-    width: 90vw;
-}
-
 body {
     overflow-y: scroll;
 }
