@@ -33,8 +33,8 @@ const content = document.createElement('div');
 const infoBox = document.createElement('div');
 const likeBox = document.createElement('div');
 const commentBox = document.createElement('div');
-const likeIcon = displayImage('../image/heart3.png', '좋아요');
-const commentIcon = displayImage('../image/comment2.png', '댓글');
+const likeIcon = displayImage('../../image/heart3.png', '좋아요');
+const commentIcon = displayImage('../../image/comment2.png', '댓글');
 const likeCount = document.createElement('p');
 const commentCount = document.createElement('p');
 const line = document.createElement('div');
@@ -78,3 +78,9 @@ content.innerHTML = postData.results[0].contents;
 
 likeCount.textContent = `${postData.results[0].like} 개`;
 commentCount.textContent = `${postData.results[0].comment} 개`;
+
+// console.log(postData.results[0]);
+
+likeIcon.addEventListener('click', function () {
+    alert('좋아용');
+});

@@ -11,16 +11,31 @@
     height: auto;
 }
 
+.input_file {
+    display: none;
+}
+
+.input_file_button {
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+.input_file_button:hover {
+    font-weight: 700;
+}
+
 .mypage_input {
-    width: 15vw;
+    width: 17vw;
     height: 4vh;
-    padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
     border-color: black;
     font-size: 16px;
     outline: none;
     margin-top: -1vh;
     margin-bottom: 3vh;
+    text-align: center;
+    border: solid 2px black;
+    line-height: 4vh;
 }
 
 .font_box {

@@ -4,7 +4,6 @@ import { displayImage, cookieUserNickname } from './component.js';
 let id = document.location.pathname.split('/')[2];
 
 //댓글 조회
-
 const fetchData = async function () {
     const getData = await fetch('http://localhost:3000/comments/inquiry', {
         method: 'POST',
@@ -21,40 +20,20 @@ const fetchData = async function () {
 
 const commentData = await fetchData();
 
-// console.log(commentData);
-
 const comment = document.querySelector('#comment');
 
 for (let i = 0; i < commentData.length; i++) {
-    let usersData = async function () {
-        let getData = await fetch('http://localhost:3000/users/inquiry', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userNickname: commentData.results[i].writer
-            })
-        });
-
-        let datas = await getData.json();
-        return datas;
-    };
-
-    let userData = await usersData();
-
     const commentBox = document.createElement('div');
     const imageBox = document.createElement('div');
     const commentRight = document.createElement('div');
     const commentId = document.createElement('div');
     const commentContent = document.createElement('div');
     const commentRegistration = document.createElement('div');
-    //이미지 파라미터 받아오기
     const profileimage = document.createElement('img');
-    profileimage.src = `//localhost:3000${userData.results[0].image}`;
+    // profileimage.src = `//localhost:3000/image/deault.png`;
     const writerDiv = document.createElement('div');
     const likeBox = document.createElement('div');
-    const likeIcon = displayImage('../image/heart3.png', '좋아요');
+    const likeIcon = displayImage('../../image/heart3.png', '좋아요');
     const likeCount = document.createElement('p');
     let content = document.createElement('div');
     const registration = document.createElement('p');
@@ -108,7 +87,6 @@ for (let i = 0; i < commentData.length; i++) {
     editItem.prepend(editBtn);
     editItem.append(deleteBtn);
 
-    // editBox.style.display = 'none';
     editBtn.id = 'edit';
     deleteBtn.id = 'delete';
     editBtn.textContent = '수정';
@@ -124,24 +102,109 @@ for (let i = 0; i < commentData.length; i++) {
     likeCount.textContent = `${commentData.results[i].like} 개`;
     content.innerHTML = `${commentData.results[i].contents}`;
     registration.textContent = `작성시간 : ${commentData.results[i].registration}`;
+    profileimage.src = `//localhost:3000${commentData.results[i].image}`;
 
     // 작성자와 쿠키에 저장된 닉네임과 다르면 수정 및 삭제 불가
     if (writerDiv.textContent !== cookieUserNickname) {
         editBox.style.display = 'none';
     }
+
+    // 수정된 댓글은 작성시간이 아닌 수정시간으로 보여줌
+    if (commentData.results[i].edit !== null) {
+        registration.textContent = `수정시간 : ${commentData.results[i].edit}`;
+    }
+    // 삭제된 댓글은 보여지지 않음
+    if (commentData.results[i].delete !== null) {
+        commentBox.style.display = 'none';
+        lineBox.style.display = 'none';
+    }
+
+    editBtn.addEventListener('click', function () {
+        // alert(commentData.results[i].id);
+        let contents = content.innerHTML;
+        content.remove();
+        content = document.createElement('textarea');
+        content.classList.add('comment_textarea');
+        commentContent.prepend(content);
+        content.innerHTML = contents;
+
+        editBtn.style.display = 'none';
+        deleteBtn.textContent = '취소';
+
+        const doneBtn = document.createElement('button');
+        doneBtn.classList.add('comment_registration_edit_button');
+
+        editItem.prepend(doneBtn);
+        doneBtn.textContent = '완료';
+
+        doneBtn.addEventListener('click', function () {
+            // alert('수정완료');
+            console.log(content.value);
+            const editComment = content.value;
+            const id = commentData.results[i].id;
+            // console.log(id);
+
+            fetch('http://localhost:3000/comments/edit', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    editComment: editComment
+                })
+            }).then(data => {
+                if (data.status == 200) {
+                    alert('댓글 수정 완료!');
+                    location.reload();
+                } else {
+                    alert('오류가 발생했습니다.');
+                }
+            });
+        });
+
+        deleteBtn.addEventListener('click', function () {
+            content.remove();
+            content = document.createElement('div');
+            content.classList.add('comment_textarea');
+            commentContent.prepend(content);
+            content.innerHTML = contents;
+
+            doneBtn.style.display = 'none';
+            editBtn.style.display = 'block';
+            deleteBtn.textContent = '삭제';
+            return;
+        });
+    });
+
+    deleteBtn.addEventListener('click', function () {
+        const id = commentData.results[i].id;
+        fetch('http://localhost:3000/comments', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        }).then(data => {
+            if (data.status == 200) {
+                alert('댓글 삭제 완료!');
+                location.reload();
+            } else {
+                alert('오류가 발생했습니다.');
+            }
+        });
+    });
 }
 
 // 댓글 등록
 const commentRegistrationBtn = document.querySelector('#registration');
 
 commentRegistrationBtn.addEventListener('click', function () {
-    const comment = document.querySelector('#comment').value;
+    const comment = document.querySelector('#comment_content').value;
 
     if (!comment) return alert('댓글 내용을 입력해 주세요.');
-
-    console.log(comment);
-    console.log(id);
-    console.log(cookieUserNickname);
 
     fetch('http://localhost:3000/comments/registration', {
         method: 'POST',
@@ -161,11 +224,4 @@ commentRegistrationBtn.addEventListener('click', function () {
             alert('오류가 발생했습니다.');
         }
     });
-});
-
-const editBtn = document.querySelector('#edit');
-const deleteBtn = document.querySelector('#delete');
-
-editBtn.addEventListener('click', function () {
-    alert('테스트중');
 });

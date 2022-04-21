@@ -46,16 +46,12 @@ router.get('/post/edit', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/post_edit.html'));
 });
 
-router.get('/post/detail', function (req, res) {
+router.get('/post/:id', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/post_detail.html'));
 });
 
-// router.get('/test', function (req, res) {
-//     res.sendFile(path.join(__dirname, '../public/html/test.html'));
-// });
-
-router.get('/test/:id', function (req, res) {
-    res.status(200).sendFile(path.join(__dirname, '../public/html/test.html'));
+router.get('/search', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/html/search.html'));
 });
 
 module.exports = router;

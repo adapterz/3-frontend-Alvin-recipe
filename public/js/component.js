@@ -11,4 +11,16 @@ function displayImage(src, alt) {
 const cookieUserId = document.cookie.split('=')[1];
 const cookieUserNickname = document.cookie.split('=')[1];
 
-export { displayImage, cookieUserId, cookieUserNickname };
+const postFetch = async function (url, body) {
+    const getData = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    const data = await getData.json();
+    return data;
+};
+
+export { displayImage, cookieUserId, cookieUserNickname, postFetch };
