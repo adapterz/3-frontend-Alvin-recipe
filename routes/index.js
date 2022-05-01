@@ -26,11 +26,11 @@ router.get('/account/mypage', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/mypage.html'));
 });
 
-router.get('/account/mypage/post', function (req, res) {
+router.get('/account/mypage-post', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/mypage_post.html'));
 });
 
-router.get('/account/mypage/comment', function (req, res) {
+router.get('/account/mypage-comment', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/mypage_comment.html'));
 });
 
@@ -42,7 +42,7 @@ router.get('/post/registration', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/post_registration.html'));
 });
 
-router.get('/post/edit', function (req, res) {
+router.get('/post/edit/:id', function (req, res) {
     res.status(200).sendFile(path.join(__dirname, '../public/html/post_edit.html'));
 });
 
@@ -54,4 +54,7 @@ router.get('/search', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/html/search.html'));
 });
 
+// router.get('/test', function (req, res) {
+//     res.sendFile(path.join(__dirname, '../public/html/test.html'));
+// });
 module.exports = router;

@@ -2,12 +2,17 @@
 @import 'style.css';
 @import 'index.css';
 
+#confirm_input,
+#confirm {
+    display: none;
+}
+
 .mypage_box {
     display: flex;
     margin-top: 5vh;
     align-items: center;
     flex-direction: column;
-    min-height: 60vh;
+    min-height: 10vh;
     height: auto;
 }
 
@@ -143,6 +148,7 @@
     height: 5vh;
     align-items: center;
     font-size: 1vw;
+    font-weight: 700;
 }
 
 .comment_content_box {
@@ -157,6 +163,11 @@
     width: 40vw;
     height: 5vh;
     align-items: center;
+}
+
+.title_box:hover,
+.comment_content_box:hover {
+    cursor: pointer;
 }
 
 @media (max-width: 400px) {

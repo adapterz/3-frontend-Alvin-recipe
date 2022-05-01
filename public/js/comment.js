@@ -1,4 +1,4 @@
-import { displayImage, cookieUserNickname } from './component.js';
+import { displayImage, cookieUserNickname, postFetch, deleteFetch } from './component.js';
 
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];
@@ -20,7 +20,13 @@ const fetchData = async function () {
 
 const commentData = await fetchData();
 
+const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+const userindex = await userData.results[0].id;
+// console.log(userData);
+
 const comment = document.querySelector('#comment');
+
+// console.log(commentData);
 
 for (let i = 0; i < commentData.length; i++) {
     const commentBox = document.createElement('div');
@@ -34,6 +40,7 @@ for (let i = 0; i < commentData.length; i++) {
     const writerDiv = document.createElement('div');
     const likeBox = document.createElement('div');
     const likeIcon = displayImage('../../image/heart3.png', '좋아요');
+    const disLikeIcon = displayImage('../image/blackheart.png', '댓글');
     const likeCount = document.createElement('p');
     let content = document.createElement('div');
     const registration = document.createElement('p');
@@ -58,6 +65,7 @@ for (let i = 0; i < commentData.length; i++) {
     registration.classList.add('registration_font');
     content.classList.add('comment_textarea');
     likeIcon.classList.add('icon');
+    disLikeIcon.classList.add('icon');
     lineBox.classList.add('line_box');
     line.classList.add('line');
 
@@ -79,7 +87,7 @@ for (let i = 0; i < commentData.length; i++) {
 
     commentId.prepend(writerDiv);
     commentId.append(likeBox);
-    likeBox.prepend(likeIcon);
+    // likeBox.prepend(likeIcon);
     likeBox.append(likeCount);
     likeBox.after(editBox);
 
@@ -97,6 +105,13 @@ for (let i = 0; i < commentData.length; i++) {
     lineBox.prepend(line);
 
     commentBox.after(lineBox);
+
+    // 좋아요를 누른 댓글에는 검은하트로 나오고, 안누른 댓글에는 빈 하트로 나옴
+    if (commentData.results[i].commentindex !== null) {
+        likeBox.prepend(disLikeIcon);
+    } else {
+        likeBox.prepend(likeIcon);
+    }
 
     writerDiv.textContent = `${commentData.results[i].writer}`;
     likeCount.textContent = `${commentData.results[i].like} 개`;
@@ -118,7 +133,33 @@ for (let i = 0; i < commentData.length; i++) {
         commentBox.style.display = 'none';
         lineBox.style.display = 'none';
     }
+    let commentindex = await commentData.results[i].id;
+    // let checkLike = await postFetch('http://localhost:3000/comments/check-like', { userindex: userindex, postindex: postindex });
 
+    // 댓글 좋아요 버튼
+    likeIcon.addEventListener('click', async function () {
+        // alert(commentData.results[i].id);
+        const data = await postFetch('http://localhost:3000/comments/like', { userindex: userindex, commentindex: commentindex });
+        if (data.results.affectedRows == 0) {
+            return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
+        } else {
+            location.reload();
+            return alert('좋아요!');
+        }
+    });
+    //댓글 좋아요 취소
+    disLikeIcon.addEventListener('click', async function () {
+        // alert(commentData.results[i].id);
+        const data = await deleteFetch('http://localhost:3000/comments/like', { userindex: userindex, commentindex: commentindex });
+        if (data.results.affectedRows == 0) {
+            return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
+        } else {
+            location.reload();
+            return;
+        }
+    });
+
+    //댓글 수정버튼
     editBtn.addEventListener('click', function () {
         // alert(commentData.results[i].id);
         let contents = content.innerHTML;
@@ -177,6 +218,7 @@ for (let i = 0; i < commentData.length; i++) {
         });
     });
 
+    // 댓글 삭제버튼
     deleteBtn.addEventListener('click', function () {
         const id = commentData.results[i].id;
         fetch('http://localhost:3000/comments', {
@@ -201,9 +243,9 @@ for (let i = 0; i < commentData.length; i++) {
 // 댓글 등록
 const commentRegistrationBtn = document.querySelector('#registration');
 
-commentRegistrationBtn.addEventListener('click', function () {
+commentRegistrationBtn.addEventListener('click', async function () {
     const comment = document.querySelector('#comment_content').value;
-
+    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
     if (!comment) return alert('댓글 내용을 입력해 주세요.');
 
     fetch('http://localhost:3000/comments/registration', {
@@ -212,9 +254,10 @@ commentRegistrationBtn.addEventListener('click', function () {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: id,
+            postindex: id,
             comment: comment,
-            writer: cookieUserNickname
+            writer: cookieUserNickname,
+            userindex: userData.results[0].id
         })
     }).then(data => {
         if (data.status == 201) {

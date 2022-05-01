@@ -14,8 +14,8 @@
         </div>
         <div class="mypage_box">
             <div class="button_box">
-                <a class="mypage_move_font" href="/html/mypage_post.html">작성글</a>
-                <a class="mypage_move_font" href="/html/mypage_comment.html">작성댓글</a>
+                <a class="mypage_move_font" href="/account/mypage-post">작성글</a>
+                <a class="mypage_move_font" href="/account/mypage-comment">작성댓글</a>
             </div>
             <div class="font_box">
                 <p>아이디</p>
@@ -26,21 +26,27 @@
                 <input id="check" class="check_font" type="submit" value="중복체크" />
             </div>
             <input id="nickname" class="mypage_input" type="text" name="name" />
-            <p class="font_box">비밀번호</p>
-            <input class="mypage_input" type="password" name="name" placeholder="비밀번호를 입력해주세요." />
-            <p class="font_box">비밀번호 확인</p>
-            <input class="mypage_input" type="password" name="name" placeholder="비밀번호를 입력해주세요." />
+            <div class="font_box">
+                <p>비밀번호</p>
+                <input id="change_pw" class="check_font" type="submit" value="비밀번호 변경" />
+            </div>
+            <input id="pw" class="mypage_input" type="password" placeholder="비밀번호를 입력해주세요." />
+            <div id="confirm" class="font_box">
+                <p>비밀번호 확인</p>
+                <input id="change_pw_btn" class="check_font" type="submit" value="비밀번호 변경" />
+            </div>
+            <input id="confirm_input" class="mypage_input" type="password" placeholder="비밀번호를 입력해주세요." />
             <p class="font_box">이메일</p>
             <div id="email" class="mypage_input"></div>
             <img id="profileimage" class="icon" />
             <input class="input_file" type="file" id="input-file" accept="image/*" />
             <label id="imageUpload" class="input_file_button" for="input-file"> 프로필이미지 변경하기 </label>
             <div class="button_box">
-                <button id="edit" class="edit_button" type="submit">수정하기</button>
-                <button class="delete_button" type="submit">회원탈퇴</button>
+                <button id="logout" class="edit_button" type="submit">로그아웃</button>
+                <button id="withdrawal" class="delete_button" type="submit">회원탈퇴</button>
             </div>
         </div>
         <footer></footer>
     </body>
-    <script type="module" src="/js/test.js"></script>
+    <script type="module" src="/js/mypage.js"></script>
 </html>
