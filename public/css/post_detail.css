@@ -1,7 +1,14 @@
 @charset "utf-8";
 @import 'style.css';
 
-.detail_box {
+img {
+    width: 70%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.post_box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,7 +18,10 @@
 .writer_box {
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
     width: 50vw;
+    height: 7vh;
+    /* border: solid 1px black; */
 }
 
 .writer_font {
@@ -23,8 +33,10 @@
     display: flex;
     justify-content: space-between;
     width: 50vw;
+    height: 3vh;
     margin-top: -2vh;
     margin-bottom: 2vh;
+    /* border: solid 1px red; */
 }
 
 .registration_font {
@@ -38,17 +50,20 @@
 
 .content_textarea {
     width: 40vw;
-    height: 50vh;
+    min-height: 50vh;
     font-size: 16px;
+    max-height: auto;
+    padding-bottom: 10vh;
 }
 
-.start_box {
+.info_box {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 40vw;
     height: 3vh;
     margin-top: 1vh;
+    padding-bottom: 10vh;
 }
 
 .count_box {
@@ -64,11 +79,19 @@
     font-size: 2vw;
 }
 
+.comment {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
 .comment_card {
     display: flex;
     align-items: center;
     width: 50vw;
-    height: 15vh;
+    height: 20vh;
 }
 
 .image_box {

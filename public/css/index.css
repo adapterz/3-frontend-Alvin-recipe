@@ -44,9 +44,8 @@ main {
 }
 
 .search_icon {
-    font-size: 1vw;
+    width: 1.5vw;
     height: auto;
-    width: auto;
 }
 
 .body_box {

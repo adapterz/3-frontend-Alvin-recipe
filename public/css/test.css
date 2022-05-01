@@ -2,7 +2,8 @@
 @import 'style.css';
 
 img {
-    width: 100%;
+    width: 70%;
+    max-width: 100%;
     height: auto;
     overflow: hidden;
 }
@@ -52,15 +53,17 @@ img {
     min-height: 50vh;
     font-size: 16px;
     max-height: auto;
+    padding-bottom: 10vh;
 }
 
-.start_box {
+.info_box {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 40vw;
     height: 3vh;
     margin-top: 1vh;
+    padding-bottom: 10vh;
 }
 
 .count_box {
@@ -74,6 +77,14 @@ img {
 
 .icon_size {
     font-size: 2vw;
+}
+
+.comment {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    flex-direction: column;
 }
 
 .comment_card {
