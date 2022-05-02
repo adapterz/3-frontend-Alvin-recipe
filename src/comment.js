@@ -1,28 +1,13 @@
-import { displayImage, cookieUserNickname, postFetch, deleteFetch } from './component.js';
+import { displayImage, cookieUserNickname, postFetch, deleteFetch, patchFetch } from './component.js';
 
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];
 
 //댓글 조회
-const fetchData = async function () {
-    const getData = await fetch('http://localhost:3000/comments/inquiry', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            postindexId: id
-        })
-    });
-    const data = await getData.json();
-    return data;
-};
+const commentData = await postFetch('/comments/inquiry', { postindexId: id });
 
-const commentData = await fetchData();
-
-const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
 const userindex = await userData.results[0].id;
-// console.log(userData);
 
 const comment = document.querySelector('#comment');
 
@@ -139,7 +124,7 @@ for (let i = 0; i < commentData.length; i++) {
     // 댓글 좋아요 버튼
     likeIcon.addEventListener('click', async function () {
         // alert(commentData.results[i].id);
-        const data = await postFetch('http://localhost:3000/comments/like', { userindex: userindex, commentindex: commentindex });
+        const data = await postFetch('/comments/like', { userindex: userindex, commentindex: commentindex });
         if (data.results.affectedRows == 0) {
             return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
         } else {
@@ -150,7 +135,7 @@ for (let i = 0; i < commentData.length; i++) {
     //댓글 좋아요 취소
     disLikeIcon.addEventListener('click', async function () {
         // alert(commentData.results[i].id);
-        const data = await deleteFetch('http://localhost:3000/comments/like', { userindex: userindex, commentindex: commentindex });
+        const data = await deleteFetch('/comments/like', { userindex: userindex, commentindex: commentindex });
         if (data.results.affectedRows == 0) {
             return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
         } else {
@@ -245,7 +230,7 @@ const commentRegistrationBtn = document.querySelector('#registration');
 
 commentRegistrationBtn.addEventListener('click', async function () {
     const comment = document.querySelector('#comment_content').value;
-    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+    const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
     if (!comment) return alert('댓글 내용을 입력해 주세요.');
 
     fetch('http://localhost:3000/comments/registration', {

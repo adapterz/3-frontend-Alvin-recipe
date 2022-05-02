@@ -1,12 +1,21 @@
-const express = require('express');
+process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+
+import express from 'express';
 const app = express();
+import { servicePort } from './config/key.js';
+import path from 'path';
+const __dirname = path.resolve();
 
-const port = 80;
+const port = servicePort();
 
-const indexRouter = require('./routes/index');
+import router from './routes/index.js';
 
-app.use(express.static('public/'));
-app.use('/', indexRouter);
+app.use('/image', express.static(__dirname + '/public/image'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/script', express.static(__dirname + '/src'));
+
+app.use('/', router);
 
 app.listen(port, function () {
     console.log(`Example app listening on port ${port}`);
@@ -16,4 +25,4 @@ app.use(function (req, res, next) {
     res.status(404).send('not found!');
 });
 
-module.exports = app;
+export default app;

@@ -54,7 +54,8 @@ if (login == 0) {
 
     mypageATag.prepend(mypageIcon);
     mypageATag.href = '/account/mypage';
-    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+    // const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+    const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
 
     //로그인한 사용자의 프로필 이미지로 변경
     mypageIcon.src = `//localhost:3000${userData.results[0].image}`;

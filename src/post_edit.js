@@ -10,7 +10,7 @@ const cancleBtn = document.querySelector('#cancelBtn');
 
 let id = document.location.pathname.split('/')[3];
 
-const postData = await postFetch('http://localhost:3000/posts/view', { id: id });
+const postData = await postFetch('/posts/view', { id: id });
 
 title.value = postData.results[0].title;
 contents.innerHTML = postData.results[0].contents;
@@ -38,7 +38,7 @@ const uploadFile = async function (file) {
     const formData = new FormData();
     formData.append('image', file);
 
-    const getData = await fetch('http://localhost:3000/posts/image-upload', {
+    const getData = await fetch('/posts/image-upload', {
         method: 'POST',
         body: formData
     });
@@ -55,7 +55,7 @@ editBtn.addEventListener('click', async function () {
 
 //수정 버튼 클릭 시 실행 함수
 const uploadpost = async function () {
-    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+    const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
     const title = document.querySelector('#title').value;
     const contents = document.querySelector('#contents').innerHTML;
 
@@ -63,7 +63,7 @@ const uploadpost = async function () {
 
     if (!contents) return alert('내용을 입력해주세요.');
 
-    const data = await patchFetch('http://localhost:3000/posts/edit', {
+    const data = await patchFetch('/posts/edit', {
         id: id,
         editTitle: title,
         editContents: contents

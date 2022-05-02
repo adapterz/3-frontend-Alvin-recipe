@@ -2,7 +2,7 @@ import './header.js';
 import './footer.js';
 import { cookieUserId, displayImage, postFetch, patchFetch, setCookie } from './component.js';
 
-const postData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserId });
+const postData = await postFetch('/users/inquiry', { userNickname: cookieUserId });
 
 // console.log(postData);
 const id = document.querySelector('#id');
@@ -26,7 +26,7 @@ image.src = `//localhost:3000${postData.results[0].image}`;
 //닉네임 중복체크 눌렀을 때 이벤트
 check.addEventListener('click', async function () {
     const nickname = document.querySelector('#nickname').value;
-    const nicknameCheck = await postFetch('http://localhost:3000/users/inquiry', { userNickname: nickname });
+    const nicknameCheck = await postFetch('/users/inquiry', { userNickname: nickname });
 
     // 데이터베이스 조회 후 반환되는 데이터가 있으면 사용중인 닉네임
     if (nicknameCheck.results.length > 0) return alert('이미 사용중인 닉네임 입니다.');
@@ -43,7 +43,7 @@ check.addEventListener('click', async function () {
 
             if (pw !== postData.results[0].password) return alert('패스워드가 다릅니다.');
 
-            const data = await patchFetch('http://localhost:3000/users/edit-nickname', {
+            const data = await patchFetch('/users/edit-nickname', {
                 userId: postData.results[0].user_id,
                 editNickname: nickname,
                 userPassword: pw
@@ -107,7 +107,7 @@ changePasswordBtn.addEventListener('click', function () {
         // 비밀번호와 비밀번호 확인이 다르면 종료
         if (pw !== confirmPw) return alert('비밀번호가 다릅니다.');
 
-        const data = await patchFetch('http://localhost:3000/users/edit-password', {
+        const data = await patchFetch('/users/edit-password', {
             indexId: postData.results[0].id,
             userPassword: pw,
             userRetryPassword: confirmPw
@@ -162,7 +162,7 @@ withdrawal.addEventListener('click', async function () {
     // 입력 비밀번호와 저장된 비밀번호가 다르면 종료
     if (pw !== postData.results[0].password) return alert('패스워드가 다릅니다.');
 
-    const data = await patchFetch('http://localhost:3000/users/withdrawal', {
+    const data = await patchFetch('/users/withdrawal', {
         userId: postData.results[0].user_id,
         userPassword: pw
     });

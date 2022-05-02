@@ -10,7 +10,7 @@ const search = decodeURI(url);
 const title = search.split('=')[1];
 
 // 데이터베이스에 저장된 게시글 중 제목 검색으로 데이터를 받아옴
-const postData = await postFetch('http://localhost:3000/posts/search', { title: title });
+const postData = await postFetch('/posts/search', { title: title });
 
 const main = document.querySelector('main');
 main.classList.add('main');

@@ -1,3 +1,12 @@
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'a';
+}
+
 // 이미지 불러오기 펑션
 function displayImage(src, alt) {
     const img = document.createElement('img');
@@ -11,14 +20,14 @@ function displayImage(src, alt) {
 const cookieUserId = document.cookie.split('=')[1];
 const cookieUserNickname = document.cookie.split('=')[1];
 
-const getFetch = async function (url) {
-    const getData = await fetch(url);
+const getFetch = async function (path) {
+    const getData = await fetch(url + path);
     const data = await getData.json();
     return data;
 };
 
-const postFetch = async function (url, body) {
-    const postData = await fetch(url, {
+const postFetch = async function (path, body) {
+    const postData = await fetch(url + path, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,8 +38,8 @@ const postFetch = async function (url, body) {
     return data;
 };
 
-const patchFetch = async function (url, body) {
-    const getData = await fetch(url, {
+const patchFetch = async function (path, body) {
+    const getData = await fetch(url + path, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -41,8 +50,8 @@ const patchFetch = async function (url, body) {
     return data;
 };
 
-const deleteFetch = async function (url, body) {
-    const getData = await fetch(url, {
+const deleteFetch = async function (path, body) {
+    const getData = await fetch(url + path, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
