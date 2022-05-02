@@ -1,5 +1,5 @@
 import './footer.js';
-import { displayImage, cookieUserId, cookieUserNickname } from './component.js';
+import { displayImage, cookieUserNickname, postFetch } from './component.js';
 
 let login;
 
@@ -40,10 +40,9 @@ if (login == 0) {
 } else {
     const postATag = document.createElement('a');
     const mypageATag = document.createElement('a');
-    // const postIcon = document.createElement('i');
-    // const mypageIcon = document.createElement('i');
+
     const postIcon = displayImage('../image/plus2.png');
-    const mypageIcon = displayImage('../image/profile.png');
+    const mypageIcon = document.createElement('img');
     postIcon.classList.add('icon');
     mypageIcon.classList.add('icon');
 
@@ -52,9 +51,11 @@ if (login == 0) {
 
     postATag.prepend(postIcon);
     postATag.href = '/post/registration';
-    // postIcon.setAttribute('class', 'fa-solid fa-plus profile_icon');
 
     mypageATag.prepend(mypageIcon);
     mypageATag.href = '/account/mypage';
-    // mypageIcon.setAttribute('class', 'fa-regular fa-user profile_icon');
+    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+
+    //로그인한 사용자의 프로필 이미지로 변경
+    mypageIcon.src = `//localhost:3000${userData.results[0].image}`;
 }

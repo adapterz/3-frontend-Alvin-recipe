@@ -7,7 +7,9 @@ img {
     height: auto;
     overflow: hidden;
 }
-
+#like:hover {
+    cursor: pointer;
+}
 .post_box {
     display: flex;
     flex-direction: column;

@@ -1,24 +1,16 @@
 import './header.js';
 import './footer.js';
-import { cookieUserId, cookieUserNickname } from './component.js';
+import { cookieUserNickname, postFetch } from './component.js';
 
 const imageUploadBtn = document.querySelector('#input-file');
 const registrationBtn = document.querySelector('#registration');
 const title = document.querySelector('#title').value;
-// const content = document.querySelector('#content').value;
 
 const images = []; // 데이터 베이스에 저장된 이미지 indexID 저장하기 위한 배열
 
 // 업로드 버튼 클릭 시 발생 이벤트
-// imageUploadBtn.addEventListener('change', async function () {
-//     for (let i = 0; i < imageUploadBtn.files.length; i++) {
-//         await uploadFile(imageUploadBtn.files[i]);
-//     }
-// });
-
-// 업로드 버튼 클릭 시 발생 이벤트
 imageUploadBtn.addEventListener('change', async function () {
-    for (let i = 0; i < imageUploadBtn.files.length; i++) {
+    for (let i = 1; i <= imageUploadBtn.files.length; i++) {
         await uploadFile(imageUploadBtn.files[i]);
     }
 });
@@ -42,7 +34,6 @@ const uploadFile = async function (file) {
         body: formData
     });
     const data = await getData.json();
-    // console.log(data);
     images.push(data.imageIndexId[0]);
     return data;
 };
@@ -55,6 +46,7 @@ registrationBtn.addEventListener('click', async function () {
 
 //등록 버튼 클릭 시 실행 함수
 const uploadpost = async function () {
+    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
     const title = document.querySelector('#title').value;
     const contents = document.querySelector('#contents').innerHTML;
 
@@ -65,14 +57,14 @@ const uploadpost = async function () {
     await fetch('http://localhost:3000/posts/registration', {
         method: 'POST',
         headers: {
-            // Accept: 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             title: title,
             contents: contents,
             images: images,
-            writer: cookieUserNickname
+            writer: cookieUserNickname,
+            userindex: userData.results[0].id
         })
     })
         // .then(res => res.json())

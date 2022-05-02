@@ -5,43 +5,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://kit.fontawesome.com/9e8abc55f3.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/css/mypage.css" />
+        <link rel="stylesheet" href="../css/mypage.css" />
         <title>For recipe</title>
     </head>
     <body>
-        <header class="header">
-            <div class="header_logo">
-                <a class="nav_logo" href="/html/index.html">For recipe</a>
-                <div class="header_nav">
-                    <a href="/html/mypage.html"><i class="fa-regular fa-user profile_icon"></i></a>
-                </div>
-            </div>
-        </header>
+        <header class="header"></header>
         <div class="line_box">
             <div class="top_line"></div>
         </div>
         <div class="mypage_box">
             <div class="button_box">
-                <a class="mypage_move_font" href="/html/mypage_post.html">작성글</a>
-                <a class="mypage_comment_font" href="/html/mypage_comment.html">작성댓글</a>
+                <a class="mypage_move_font" href="/account/mypage-post">작성글</a>
+                <a class="mypage_comment_font" href="/account/mypage-comment">작성댓글</a>
             </div>
             <div class="line"></div>
-            <div class="post_count_box">
-                <p>1개의 댓글이 있습니다.</p>
-            </div>
-            <div class="comment_card">
-                <div class="comment_box">
-                    <div class="title_box">글 제목</div>
-                    <div class="comment_content_box">
-                        <textarea class="comment_content_box" placeholder="댓글 내용"></textarea>
-                    </div>
-                    <div class="comment_registration">작성시간</div>
-                </div>
-                <div class="like_box"><i class="fa-regular fa-heart"></i> 1개</div>
-            </div>
+            <div id="count" class="post_count_box"></div>
         </div>
-        <div class="footer">
-            <p>.Copyright 2022. For recipe All rights reserved.</p>
-        </div>
+        <main></main>
+        <footer></footer>
     </body>
+    <script type="module" src="/js/mypage-comment.js"></script>
 </html>
