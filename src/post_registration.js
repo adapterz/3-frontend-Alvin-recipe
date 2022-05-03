@@ -46,7 +46,7 @@ registrationBtn.addEventListener('click', async function () {
 
 //등록 버튼 클릭 시 실행 함수
 const uploadpost = async function () {
-    const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+    const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
     const title = document.querySelector('#title').value;
     const contents = document.querySelector('#contents').innerHTML;
 

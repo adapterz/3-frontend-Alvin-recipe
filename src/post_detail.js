@@ -6,29 +6,17 @@ import { displayImage, postFetch, cookieUserNickname, deleteFetch, patchFetch } 
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];
 
-// const fetchData = async function () {
-//     const getData = await fetch('http://localhost:3000/posts/view', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             id: id
-//         })
-//     });
-//     const data = await getData.json();
-//     return data;
-// };
+// 게시글 인덱스 번호로 데이터베이스 조회
+const postData = await postFetch('/posts/view', { id: id });
 
-// const postData = await fetchData();
-
-const postData = await postFetch('http://localhost:3000/posts/view', { id: id });
-
-const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserNickname });
+// 쿠키에 저장된 닉네임으로 유저 인덱스번호 검색 후 변수에 할당
+const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
 const userindex = await userData.results[0].id;
 
-const checkLike = await postFetch('http://localhost:3000/posts/check-like', { userindex: userindex, postindex: id });
-const countLike = await postFetch('http://localhost:3000/posts/count-like', { postindex: id });
+// 게시글에 좋아요를 눌렀는지 확인
+const checkLike = await postFetch('/posts/check-like', { userindex: userindex, postindex: id });
+// 게시글에 좋아요가 몇개인지 확인
+const countLike = await postFetch('/posts/count-like', { postindex: id });
 
 const postBox = document.querySelector('#post_box');
 const writerBox = document.createElement('div');
@@ -135,7 +123,7 @@ editBtn.addEventListener('click', async function () {
 
 // 게시글 삭제
 deleteBtn.addEventListener('click', async function () {
-    const data = await patchFetch('http://localhost:3000/posts', { id: id, writer: cookieUserNickname });
+    const data = await patchFetch('/posts', { id: id, writer: cookieUserNickname });
     if (data.results.affectedRows == 0) {
         return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
     } else {
@@ -146,7 +134,7 @@ deleteBtn.addEventListener('click', async function () {
 
 //게시글 좋아요
 likeIcon.addEventListener('click', async function () {
-    const data = await postFetch('http://localhost:3000/posts/like', { userindex: userindex, postindex: id });
+    const data = await postFetch('/posts/like', { userindex: userindex, postindex: id });
     if (data.results.affectedRows == 0) {
         return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
     } else {
@@ -157,7 +145,7 @@ likeIcon.addEventListener('click', async function () {
 
 //게시글 좋아요 취소
 disLikeIcon.addEventListener('click', async function () {
-    const data = await deleteFetch('http://localhost:3000/posts/like', { userindex: userindex, postindex: id });
+    const data = await deleteFetch('/posts/like', { userindex: userindex, postindex: id });
     if (data.results.affectedRows == 0) {
         return alert('오류가 발생했습니다. 잠시후에 다시 시도해 주세요.');
     } else {

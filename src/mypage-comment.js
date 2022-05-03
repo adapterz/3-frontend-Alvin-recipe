@@ -5,19 +5,18 @@ import { cookieUserId, postFetch, displayImage, searchParam } from './component.
 const count = document.querySelector('#count');
 const p = document.createElement('p');
 // 쿠키에 저장된 닉네임으로 유저 index를 받아옴
-const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserId });
+const userData = await postFetch('/users/inquiry', { userNickname: cookieUserId });
 // 받아온 유저 index를 변수에 할당
 const userIndexId = userData.results[0].id;
 // 유저 index 기준으로 댓글을 불러옴
-const commentData = await postFetch('http://localhost:3000/comments/user-inquiry', { userindex: userIndexId });
+const commentData = await postFetch('/comments/user-inquiry', { userindex: userIndexId });
 // 작성한 게시글 총 개수 변수에 할당
 const totalData = commentData.length;
 // 현재 페이지를 변수에 할당
 let currentPage = Number(searchParam('page'));
 // 유저 index 기준으로 페이징 정보를 받아옴
-const pagingData = await postFetch('http://localhost:3000/comments/mypage-paging', { userindex: userIndexId, page: currentPage });
+const pagingData = await postFetch('/comments/mypage-paging', { userindex: userIndexId, page: currentPage });
 
-console.log(pagingData);
 count.prepend(p);
 p.textContent = `${commentData.length} 개의 댓글이 있습니다.`;
 const main = document.querySelector('main');

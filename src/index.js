@@ -1,20 +1,19 @@
 import './header.js';
 import './footer.js';
-import { cookieUserId, postFetch, displayImage, searchParam } from './component.js';
+import { displayImage, getFetch, cookieUserNickname, postFetch, searchParam } from './component.js';
+// import config from '../config/key.js';
 
-// 쿠키에 저장된 닉네임으로 유저 index를 받아옴
-const userData = await postFetch('http://localhost:3000/users/inquiry', { userNickname: cookieUserId });
-// 받아온 유저 index를 변수에 할당
-const userIndexId = userData.results[0].id;
-// 유저 index 기준으로 게시글을 불러옴
-const postData = await postFetch('http://localhost:3000/posts/inquiry', { userindex: userIndexId });
-// 작성한 게시글 총 개수 변수에 할당
+// 전체 게시글 조회하는 fetch
+// const postData = await getFetch('http://localhost:3000/posts');
+const postData = await getFetch('/posts');
 const totalData = postData.length;
+// const totalData = 2000;
+
 // 현재 페이지를 변수에 할당
 let currentPage = Number(searchParam('page'));
-// 유저 index 기준으로 페이징 정보를 받아옴
-const pagingData = await postFetch('http://localhost:3000/posts/mypage-paging', { userindex: userIndexId, page: currentPage });
-
+// 페이징 처리된 데이터 불러오는 fetch
+// const pagingData = await postFetch('http://localhost:3000/posts/index-paging', { page: currentPage });
+const pagingData = await postFetch('/posts/index-paging', { page: currentPage });
 let viewPage = 10; // 화면에 보여질 페이지 갯수
 let viewData = 20; // 화면에 보여질 데이터 갯수
 let totalPage = Math.ceil(totalData / viewData); // 총 페이지 갯수 = 총 데이터 / 한화면에 보여질 데이터
@@ -32,22 +31,15 @@ if (currentPage % viewPage == 0) {
     lastPage = currentPage;
 }
 
-const count = document.querySelector('#count');
-const p = document.createElement('p');
-
-count.prepend(p);
-p.textContent = `${postData.length} 개의 게시글이 있습니다.`;
-
-const w = document.createElement('div');
 const main = document.querySelector('main');
-const pagination = document.createElement('div');
-
-pagination.classList.add('pagination_box');
 main.classList.add('main');
+const w = document.createElement('div');
 w.classList.add('content_box');
-
-main.after(pagination);
 main.prepend(w);
+
+const pagination = document.createElement('div');
+pagination.classList.add('pagination_box');
+main.after(pagination);
 
 const prev = document.createElement('a');
 const next = document.createElement('a');
@@ -79,11 +71,11 @@ for (let i = 0; i < pagingData.results.length; i++) {
     const likeboxDivTag = document.createElement('div');
     const likeCountBox = document.createElement('div');
     const commentCountBox = document.createElement('div');
-    const likeIcon = displayImage('../image/heart3.png', '좋아요');
-    const commentIcon = displayImage('../image/comment2.png', '댓글');
+    const likeIcon = displayImage('/image/heart3.png', '좋아요');
+    const commentIcon = displayImage('/image/comment2.png', '댓글');
     const likeCount = document.createElement('p');
     const commentCount = document.createElement('p');
-    const thumbnail = displayImage('../image/명치.jpg', '썸네일');
+    const thumbnail = displayImage('/image/명치.jpg', '썸네일');
     likeIcon.classList.add('icon');
     commentIcon.classList.add('icon');
 
@@ -112,13 +104,42 @@ for (let i = 0; i < pagingData.results.length; i++) {
 
     // 이미지 클릭하면 해당 게시글로 이동
     imageboxDivTag.addEventListener('click', function () {
-        location.href = `/post/${pagingData.results[i].id}`;
+        if (!cookieUserNickname) {
+            alert('로그인 후 이용하실 수 있습니다.');
+            return (location.href = '/');
+        } else {
+            location.href = `/post/${pagingData.results[i].id}`;
+        }
     });
     // 제목 클릭하면 해당 게시글로 이동
     titleboxDivTag.addEventListener('click', function () {
-        location.href = `/post/${pagingData.results[i].id}`;
+        if (!cookieUserNickname) {
+            alert('로그인 후 이용하실 수 있습니다.');
+            return (location.href = '/');
+        } else {
+            location.href = `/post/${pagingData.results[i].id}`;
+        }
     });
+    // 삭제된 게시글은 보여지지 않음
+    if (pagingData.results[i].delete !== null) {
+        cardboxDivTag.style.display = 'none';
+    }
 }
+
+const searchBtn = document.querySelector('#search_button');
+const searchInput = document.querySelector('#search_input');
+
+searchBtn.addEventListener('click', async function () {
+    const searchInput = document.querySelector('#search_input').value;
+    location.href = `/search?title=${searchInput}`;
+});
+
+searchInput.addEventListener('keydown', function (e) {
+    if (e.keyCode == 13) {
+        const search = document.querySelector('#search_input').value;
+        location.href = `/search?title=${search}`;
+    }
+});
 
 // 페이징 목록 만드는 반복분
 for (let p = firstPage; p <= lastPage; p++) {
