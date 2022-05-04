@@ -145,8 +145,7 @@ for (let i = 0; i < commentData.length; i++) {
     });
 
     //댓글 수정버튼
-    editBtn.addEventListener('click', function () {
-        // alert(commentData.results[i].id);
+    editBtn.addEventListener('click', async function () {
         let contents = content.innerHTML;
         content.remove();
         content = document.createElement('textarea');
@@ -155,73 +154,48 @@ for (let i = 0; i < commentData.length; i++) {
         content.innerHTML = contents;
 
         editBtn.style.display = 'none';
-        deleteBtn.textContent = '취소';
+        deleteBtn.style.display = 'none';
 
         const doneBtn = document.createElement('button');
+        const cancelBtn = document.createElement('button');
         doneBtn.classList.add('comment_registration_edit_button');
+        cancelBtn.classList.add('comment_registration_delete_button');
 
         editItem.prepend(doneBtn);
+        editItem.append(cancelBtn);
         doneBtn.textContent = '완료';
+        cancelBtn.textContent = '취소';
 
-        doneBtn.addEventListener('click', function () {
-            // alert('수정완료');
-            console.log(content.value);
+        doneBtn.addEventListener('click', async function () {
             const editComment = content.value;
             const id = commentData.results[i].id;
-            // console.log(id);
 
-            fetch('http://localhost:3000/comments/edit', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: id,
-                    editComment: editComment
-                })
-            }).then(data => {
-                if (data.status == 200) {
-                    alert('댓글 수정 완료!');
-                    location.reload();
-                } else {
-                    alert('오류가 발생했습니다.');
-                }
-            });
+            const data = await patchFetch('/comments/edit', { id: id, editComment: editComment });
+
+            console.log(data.data.affectedRows);
+
+            if (data.data.affectedRows == 1) {
+                alert('댓글 수정 완료!');
+                location.reload();
+            }
         });
 
-        deleteBtn.addEventListener('click', function () {
-            content.remove();
-            content = document.createElement('div');
-            content.classList.add('comment_textarea');
-            commentContent.prepend(content);
-            content.innerHTML = contents;
-
-            doneBtn.style.display = 'none';
-            editBtn.style.display = 'block';
-            deleteBtn.textContent = '삭제';
+        cancelBtn.addEventListener('click', function () {
+            location.reload();
             return;
         });
     });
 
     // 댓글 삭제버튼
-    deleteBtn.addEventListener('click', function () {
+    deleteBtn.addEventListener('click', async function () {
         const id = commentData.results[i].id;
-        fetch('http://localhost:3000/comments', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id
-            })
-        }).then(data => {
-            if (data.status == 200) {
-                alert('댓글 삭제 완료!');
-                location.reload();
-            } else {
-                alert('오류가 발생했습니다.');
-            }
-        });
+
+        const data = await deleteFetch('/comments', { id: id });
+
+        if (data.data.affectedRows == 1) {
+            alert('댓글 삭제 완료!');
+            location.reload();
+        }
     });
 }
 
@@ -233,23 +207,15 @@ commentRegistrationBtn.addEventListener('click', async function () {
     const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
     if (!comment) return alert('댓글 내용을 입력해 주세요.');
 
-    fetch('http://localhost:3000/comments/registration', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            postindex: id,
-            comment: comment,
-            writer: cookieUserNickname,
-            userindex: userData.results[0].id
-        })
-    }).then(data => {
-        if (data.status == 201) {
-            alert('댓글 등록 완료!');
-            location.reload();
-        } else {
-            alert('오류가 발생했습니다.');
-        }
+    const data = await postFetch('/comments/registration', {
+        postindex: id,
+        comment: comment,
+        writer: cookieUserNickname,
+        userindex: userData.results[0].id
     });
+
+    if (data.message == 'done') {
+        alert('댓글 등록 완료!');
+        return location.reload();
+    }
 });

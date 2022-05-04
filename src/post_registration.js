@@ -34,6 +34,7 @@ const uploadFile = async function (file) {
         body: formData
     });
     const data = await getData.json();
+    // const data = await postFetch('/posts/image-upload', { formData });
     images.push(data.imageIndexId[0]);
     return data;
 };
@@ -54,26 +55,16 @@ const uploadpost = async function () {
 
     if (!contents) return alert('내용을 입력해주세요.');
 
-    await fetch('http://localhost:3000/posts/registration', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title,
-            contents: contents,
-            images: images,
-            writer: cookieUserNickname,
-            userindex: userData.results[0].id
-        })
-    })
-        // .then(res => res.json())
-        .then(data => {
-            if (data.status == 201) {
-                alert('게시글 등록 완료!');
-                location.href = '/';
-            } else {
-                alert('오류가 발생했습니다.');
-            }
-        });
+    const data = await postFetch('/posts/registration', {
+        title: title,
+        contents: contents,
+        images: images,
+        writer: cookieUserNickname,
+        userindex: userData.results[0].id
+    });
+
+    if (data.message == 'done') {
+        alert('게시글 등록 완료!');
+        return (location.href = '/');
+    }
 };

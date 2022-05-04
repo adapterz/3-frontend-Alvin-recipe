@@ -1,6 +1,6 @@
 import './header.js';
 import './footer.js';
-import { cookieUserId, cookieUserNickname, setCookie } from './component.js';
+import { cookieUserId, cookieUserNickname, setCookie, postFetch } from './component.js';
 
 const loginBtn = document.querySelector('#login_btn');
 const pwInput = document.querySelector('#pw');
@@ -13,31 +13,14 @@ const login = async function () {
 
     if (!pw) return alert('비밀번호를 입력해 주세요.');
 
-    await fetch('http://localhost:3000/users/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            userId: id,
-            userPassword: pw
-        })
-    })
-        .then(res => {
-            if (res.status == 200) {
-                return res.json();
-            } else {
-                return alert('ID 또는 비밀번호를 확인해주세요');
-            }
-        })
-        .then(data => {
-            setCookie('nickname', data[0].nickname, 1);
-            location.href = '/';
-        })
+    const data = await postFetch('/users/login', { userId: id, userPassword: pw });
 
-        .catch(err => {
-            console.log('err', err);
-        });
+    if (data.message == 'fail') return alert('아이디 또는 비밀번호를 확인해주세요.');
+
+    if (data.length !== 0) {
+        setCookie('nickname', data.userData[0].nickname, 1);
+        location.href = '/';
+    }
 };
 
 loginBtn.addEventListener('click', login);
