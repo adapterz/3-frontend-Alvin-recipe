@@ -9,13 +9,15 @@ const title = document.querySelector('#title').value;
 const images = []; // 데이터 베이스에 저장된 이미지 indexID 저장하기 위한 배열
 
 // 업로드 버튼 클릭 시 발생 이벤트
-imageUploadBtn.addEventListener('change', async function () {
-    for (let i = 1; i <= imageUploadBtn.files.length; i++) {
-        await uploadFile(imageUploadBtn.files[i]);
-    }
-});
+// imageUploadBtn.addEventListener('change', async function () {
+//     for (let i = 1; i <= imageUploadBtn.files.length; i++) {
+//         await uploadFile(imageUploadBtn.files[i]);
+//     }
+// });
+
 // 업로드 버튼 눌렀을때 이미지 미리보기
 imageUploadBtn.addEventListener('change', async function () {
+    // console.log(imageUploadBtn.files.length);
     for (let i = 0; i < imageUploadBtn.files.length; i++) {
         const data = await uploadFile(imageUploadBtn.files[i]);
         let img = document.createElement('img');
@@ -34,7 +36,8 @@ const uploadFile = async function (file) {
         body: formData
     });
     const data = await getData.json();
-    // const data = await postFetch('/posts/image-upload', { formData });
+
+    console.log(data);
     images.push(data.imageIndexId[0]);
     return data;
 };

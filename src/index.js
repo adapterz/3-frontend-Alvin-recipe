@@ -63,8 +63,10 @@ if (totalPage <= 10 || currentPage == totalPage) {
     last.style.display = 'none';
 }
 
+const pagingDataReverse = pagingData.results.reverse();
+
 //전체 게시글 조회후 길이만큼 카드박스 생성
-for (let i = 0; i < pagingData.results.length; i++) {
+for (let i = 0; i < pagingDataReverse.length; i++) {
     const cardboxDivTag = document.createElement('div');
     const imageboxDivTag = document.createElement('div');
     const titleboxDivTag = document.createElement('div');
@@ -75,9 +77,10 @@ for (let i = 0; i < pagingData.results.length; i++) {
     const commentIcon = displayImage('/image/comment2.png', '댓글');
     const likeCount = document.createElement('p');
     const commentCount = document.createElement('p');
-    const thumbnail = displayImage('/image/명치.jpg', '썸네일');
+    const thumbnail = displayImage(`http://localhost:3000${pagingDataReverse[i].thumbnail}`, '썸네일');
     likeIcon.classList.add('icon');
     commentIcon.classList.add('icon');
+    thumbnail.classList.add('thumbnail');
 
     w.prepend(cardboxDivTag);
     cardboxDivTag.prepend(imageboxDivTag);
@@ -90,8 +93,8 @@ for (let i = 0; i < pagingData.results.length; i++) {
     commentCountBox.prepend(commentIcon);
     commentCountBox.append(commentCount);
     imageboxDivTag.appendChild(thumbnail);
-    likeCount.textContent = `${pagingData.results[i].like} 개`;
-    commentCount.textContent = `${pagingData.results[i].comment} 개`;
+    likeCount.textContent = `${pagingDataReverse[i].like} 개`;
+    commentCount.textContent = `${pagingDataReverse[i].comment} 개`;
 
     cardboxDivTag.classList.add('card_box');
     imageboxDivTag.classList.add('image_box');
@@ -100,7 +103,7 @@ for (let i = 0; i < pagingData.results.length; i++) {
     likeCountBox.classList.add('like_comment_box');
     commentCountBox.classList.add('like_comment_box');
     // imageboxDivTag.textContent = '이미지공간';
-    titleboxDivTag.textContent = pagingData.results[i].title;
+    titleboxDivTag.textContent = pagingDataReverse[i].title;
 
     // 이미지 클릭하면 해당 게시글로 이동
     imageboxDivTag.addEventListener('click', function () {
@@ -108,7 +111,7 @@ for (let i = 0; i < pagingData.results.length; i++) {
             alert('로그인 후 이용하실 수 있습니다.');
             return (location.href = '/');
         } else {
-            location.href = `/post/${pagingData.results[i].id}`;
+            location.href = `/post/${pagingDataReverse[i].id}`;
         }
     });
     // 제목 클릭하면 해당 게시글로 이동
@@ -117,11 +120,11 @@ for (let i = 0; i < pagingData.results.length; i++) {
             alert('로그인 후 이용하실 수 있습니다.');
             return (location.href = '/');
         } else {
-            location.href = `/post/${pagingData.results[i].id}`;
+            location.href = `/post/${pagingDataReverse[i].id}`;
         }
     });
     // 삭제된 게시글은 보여지지 않음
-    if (pagingData.results[i].delete !== null) {
+    if (pagingDataReverse[i].delete !== null) {
         cardboxDivTag.style.display = 'none';
     }
 }
