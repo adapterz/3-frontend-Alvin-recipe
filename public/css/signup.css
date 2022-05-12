@@ -91,6 +91,17 @@ img {
     font-weight: 700;
 }
 
+.input_div {
+    position: relative;
+}
+
+.input_div img {
+    position: absolute;
+    right: 1vw;
+    width: 2vw;
+    height: 2vh;
+}
+
 @media (max-width: 400px) {
     .signup_box {
         margin-top: 15vh;

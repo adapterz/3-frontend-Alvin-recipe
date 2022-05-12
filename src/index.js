@@ -4,7 +4,6 @@ import { displayImage, getFetch, cookieUserNickname, postFetch, searchParam } fr
 // import config from '../config/key.js';
 
 // 전체 게시글 조회하는 fetch
-// const postData = await getFetch('http://localhost:3000/posts');
 const postData = await getFetch('/posts');
 const totalData = postData.length;
 // const totalData = 2000;
@@ -12,7 +11,6 @@ const totalData = postData.length;
 // 현재 페이지를 변수에 할당
 let currentPage = Number(searchParam('page'));
 // 페이징 처리된 데이터 불러오는 fetch
-// const pagingData = await postFetch('http://localhost:3000/posts/index-paging', { page: currentPage });
 const pagingData = await postFetch('/posts/index-paging', { page: currentPage });
 let viewPage = 10; // 화면에 보여질 페이지 갯수
 let viewData = 20; // 화면에 보여질 데이터 갯수

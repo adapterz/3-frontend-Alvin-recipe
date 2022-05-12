@@ -12,6 +12,11 @@ const title = search.split('=')[1];
 // 데이터베이스에 저장된 게시글 중 제목 검색으로 데이터를 받아옴
 const postData = await postFetch('/posts/search', { title: title });
 
+if (postData.length == 0) {
+    alert('검색 결과가 없습니다.');
+    location.href = '/';
+}
+
 const main = document.querySelector('main');
 main.classList.add('main');
 const w = document.createElement('div');
