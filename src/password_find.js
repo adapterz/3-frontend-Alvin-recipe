@@ -1,6 +1,14 @@
 import './header.js';
 import './footer.js';
 import { postFetch } from './component.js';
+import { loginCheck } from './header.js';
+
+const login = loginCheck();
+
+if (login === false) {
+    alert('로그인 후 이용하실 수 있습니다.');
+    location.href = '/';
+}
 
 const email_send_btn = document.querySelector('#email_send_btn');
 

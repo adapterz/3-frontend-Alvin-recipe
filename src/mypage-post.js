@@ -1,6 +1,14 @@
 import './header.js';
 import './footer.js';
 import { cookieUserId, postFetch, displayImage, searchParam } from './component.js';
+import { loginCheck } from './header.js';
+
+const login = loginCheck();
+
+if (login === false) {
+    alert('로그인 후 이용하실 수 있습니다.');
+    location.href = '/';
+}
 
 // 쿠키에 저장된 닉네임으로 유저 index를 받아옴
 const userData = await postFetch('/users/inquiry', { userNickname: cookieUserId });

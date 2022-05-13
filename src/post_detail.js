@@ -2,6 +2,14 @@ import './header.js';
 import './footer.js';
 import './comment.js';
 import { displayImage, postFetch, cookieUserNickname, deleteFetch, patchFetch } from './component.js';
+import { loginCheck } from './header.js';
+
+const login = loginCheck();
+
+if (login === false) {
+    alert('로그인 후 이용하실 수 있습니다.');
+    location.href = '/';
+}
 
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];

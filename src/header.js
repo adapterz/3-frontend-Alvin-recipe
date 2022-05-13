@@ -1,13 +1,18 @@
 import './footer.js';
 import { displayImage, cookieUserNickname, postFetch } from './component.js';
 
-let login;
+const loginCheck = function () {
+    let login;
+    if (cookieUserNickname == undefined) {
+        login = 0;
+        return false;
+    } else if (cookieUserNickname !== undefined) {
+        login = 1;
+        return true;
+    }
+};
+const data = loginCheck();
 
-if (cookieUserNickname == undefined) {
-    login = 0;
-} else if (cookieUserNickname !== undefined) {
-    login = 1;
-}
 const headClass = document.querySelector('.header');
 const logoDivTag = document.createElement('div');
 const logoATag = document.createElement('a');
@@ -25,7 +30,8 @@ logoDivTag.append(navDivTag);
 navDivTag.classList.add('header_nav');
 
 //로그인 여부에 따른 헤더 부분
-if (login == 0) {
+if (data === false) {
+    // if (login == 0) {
     const loginATag = document.createElement('a');
     const signupATag = document.createElement('a');
     navDivTag.prepend(loginATag);
@@ -60,3 +66,5 @@ if (login == 0) {
     //로그인한 사용자의 프로필 이미지로 변경
     mypageIcon.src = `//localhost:3000${userData.results[0].image}`;
 }
+
+export { loginCheck };
