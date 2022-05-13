@@ -3,6 +3,15 @@ import './footer.js';
 import { cookieUserId, displayImage, postFetch, patchFetch, setCookie } from './component.js';
 import { loginCheck } from './header.js';
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 const login = loginCheck();
 
 if (login === false) {
@@ -29,7 +38,7 @@ const withdrawalBtn = document.querySelector('#withdrawal');
 id.textContent = postData.results[0].user_id;
 nickname.value = postData.results[0].nickname;
 email.textContent = postData.results[0].email;
-image.src = `//localhost:3000${postData.results[0].image}`;
+image.src = `${url}${postData.results[0].image}`;
 
 //닉네임 중복체크 눌렀을 때 이벤트
 check.addEventListener('click', async function () {
@@ -61,8 +70,6 @@ check.addEventListener('click', async function () {
                 return alert('잠시후에 다시 시도해 주세요.');
             } else {
                 //변경한 닉네임으로 쿠키 변경
-                // let cookie = 'nickname =' + nickname + '; path=/;';
-                // document.cookie = cookie;
                 setCookie('nickname', nickname, 1);
                 alert('닉네임 변경 완료');
             }
@@ -153,7 +160,7 @@ const uploadFile = async function (file) {
     formData.append('image', file);
     formData.append('userNickname', cookieUserId);
 
-    const getData = await fetch('http://localhost:3000/users/image-upload', {
+    const getData = await fetch(`${url}/users/image-upload`, {
         method: 'PATCH',
         body: formData
     });

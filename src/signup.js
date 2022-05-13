@@ -2,6 +2,15 @@ import './header.js';
 import './footer.js';
 import { postFetch, displayImage } from './component.js';
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 const auth_push_btn = document.querySelector('#auth_push_btn');
 const auth_btn = document.querySelector('#auth_btn');
 const signup_btn = document.querySelector('#signup_btn');
@@ -181,19 +190,11 @@ email.addEventListener('keyup', function () {
     }
 });
 
-// auth.addEventListener('keyup', function () {
-//     let auth = document.querySelector('#authNumber').value;
-
-//     auth = auth.replace(/[^0-9]/g, '');
-
-//     console.log(auth);
-// });
-
 const imageUploadBtn = document.querySelector('#input-file');
 let profileImage = document.createElement('img');
 authDiv.after(profileImage);
 profileImage.classList.add('profile_icon');
-profileImage.src = 'http://localhost:3000/image/default.png';
+profileImage.src = `${url}/image/default.png`;
 
 let image = profileImage.src;
 
@@ -201,7 +202,7 @@ let image = profileImage.src;
 imageUploadBtn.addEventListener('change', async function () {
     const data = await uploadFile(imageUploadBtn.files[0]);
     if (data.message == 'success') {
-        profileImage.src = `//localhost:3000${data.image}`;
+        profileImage.src = `${url}${data.image}`;
         image = data.image;
         return;
     } else {
@@ -214,7 +215,7 @@ const uploadFile = async function (file) {
     const formData = new FormData();
     formData.append('image', file);
 
-    const getData = await fetch('http://localhost:3000/users/signup-image', {
+    const getData = await fetch(`${url}/users/signup-image`, {
         method: 'POST',
         body: formData
     });

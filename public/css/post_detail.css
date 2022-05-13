@@ -23,7 +23,6 @@ img {
     flex-direction: column;
     width: 50vw;
     height: 7vh;
-    /* border: solid 1px black; */
 }
 
 .writer_font {
@@ -38,7 +37,6 @@ img {
     height: 3vh;
     margin-top: -2vh;
     margin-bottom: 2vh;
-    /* border: solid 1px red; */
 }
 
 .registration_font {
@@ -160,8 +158,8 @@ img {
 .comment_registration_button {
     width: 5vw;
     height: 9vh;
-    background-color: white;
-    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .comment_registration_box {
@@ -194,13 +192,14 @@ img {
     background-color: rgb(52, 152, 219);
     border: none;
     border-radius: 1vw;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
     .content_textarea,
     .start_box {
         width: 70vw;
+        max-width: 100vw;
     }
     .count_box {
         width: 20vw;
@@ -246,5 +245,14 @@ img {
     }
     .comment_registration_textarea {
         width: 55vw;
+    }
+    .info_box {
+        justify-content: space-between;
+        width: 90vw;
+    }
+    .content_textarea div {
+        max-width: 100vw;
+        overflow: hidden;
+        word-wrap: break-word;
     }
 }

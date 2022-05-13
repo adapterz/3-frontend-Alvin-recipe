@@ -1,7 +1,15 @@
 import './header.js';
 import './footer.js';
 import { displayImage, getFetch, cookieUserNickname, postFetch, searchParam } from './component.js';
-// import config from '../config/key.js';
+
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
 
 // 전체 게시글 조회하는 fetch
 const postData = await getFetch('/posts');
@@ -75,7 +83,7 @@ for (let i = 0; i < pagingDataReverse.length; i++) {
     const commentIcon = displayImage('/image/comment2.png', '댓글');
     const likeCount = document.createElement('p');
     const commentCount = document.createElement('p');
-    const thumbnail = displayImage(`http://localhost:3000${pagingDataReverse[i].thumbnail}`, '썸네일');
+    const thumbnail = displayImage(`${url}${pagingDataReverse[i].thumbnail}`, '썸네일');
     likeIcon.classList.add('icon');
     commentIcon.classList.add('icon');
     thumbnail.classList.add('thumbnail');

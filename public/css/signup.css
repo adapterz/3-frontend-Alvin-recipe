@@ -11,11 +11,11 @@ a {
 }
 a:link {
     /* 방문 전 색깔 */
-    color: black;
+    color: rgb(0, 0, 0);
 }
 a:visited {
     /* 방문 후 색깔 */
-    color: black;
+    color: rgb(0, 0, 0);
 }
 a:hover {
     font-weight: 700;
@@ -42,7 +42,7 @@ img {
     font-size: 16px;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 0.5vw; /* input창 둥글게 */
-    border-color: black;
+    border-color: rgb(0, 0, 0);
     outline: none;
     margin-top: -0.5vw;
     margin-bottom: 2vw;
@@ -55,7 +55,7 @@ img {
 }
 
 .check_font {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: none;
     font-size: 1rem;
 }
@@ -66,7 +66,7 @@ img {
     width: 17vw;
     height: 3vh;
     background-color: rgb(52, 152, 219);
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 1vw;
     border: none;
     border-radius: 1vw;
@@ -102,7 +102,7 @@ img {
     height: 2vh;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
     .signup_box {
         margin-top: 15vh;
     }
@@ -111,12 +111,20 @@ img {
     }
     .signup_input {
         width: 70vw;
-        border: 1px solid gray;
+        border: 1px solid rgb(128, 128, 128);
         border-radius: 2vw;
         font-size: 13px;
     }
     .profile_icon {
         margin-top: 3vh;
         font-size: 7vw;
+    }
+    .input_file_button {
+        font-size: 16px;
+    }
+    .signup_button {
+        width: 40vw;
+        height: 3vh;
+        font-size: 16px;
     }
 }

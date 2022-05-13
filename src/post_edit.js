@@ -10,6 +10,15 @@ if (login === false) {
     location.href = '/';
 }
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 const imageUploadBtn = document.querySelector('#input-file');
 const editBtn = document.querySelector('#registration');
 const title = document.querySelector('#title');
@@ -36,7 +45,7 @@ imageUploadBtn.addEventListener('change', async function () {
     for (let i = 0; i < imageUploadBtn.files.length; i++) {
         const data = await uploadFile(imageUploadBtn.files[i]);
         let img = document.createElement('img');
-        img.src = `//localhost:3000${data.imageURLs}`;
+        img.src = `${url}${data.imageURLs}`;
         document.querySelector('#contents').appendChild(img);
     }
 });
