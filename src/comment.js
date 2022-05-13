@@ -8,6 +8,15 @@ if (login === false) {
     location.href = '/';
 }
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];
 
@@ -29,7 +38,6 @@ for (let i = 0; i < commentData.length; i++) {
     const commentContent = document.createElement('div');
     const commentRegistration = document.createElement('div');
     const profileimage = document.createElement('img');
-    // profileimage.src = `//localhost:3000/image/deault.png`;
     const writerDiv = document.createElement('div');
     const likeBox = document.createElement('div');
     const likeIcon = displayImage('../../image/heart3.png', '좋아요');
@@ -110,7 +118,7 @@ for (let i = 0; i < commentData.length; i++) {
     likeCount.textContent = `${commentData.results[i].like} 개`;
     content.innerHTML = `${commentData.results[i].contents}`;
     registration.textContent = `작성시간 : ${commentData.results[i].registration}`;
-    profileimage.src = `//localhost:3000${commentData.results[i].image}`;
+    profileimage.src = `${url}${commentData.results[i].image}`;
 
     // 작성자와 쿠키에 저장된 닉네임과 다르면 수정 및 삭제 불가
     if (writerDiv.textContent !== cookieUserNickname) {

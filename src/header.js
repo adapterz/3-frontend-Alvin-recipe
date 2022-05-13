@@ -1,6 +1,15 @@
 import './footer.js';
 import { displayImage, cookieUserNickname, postFetch } from './component.js';
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 const loginCheck = function () {
     let login;
     if (cookieUserNickname == undefined) {
@@ -64,7 +73,7 @@ if (data === false) {
     const userData = await postFetch('/users/inquiry', { userNickname: cookieUserNickname });
 
     //로그인한 사용자의 프로필 이미지로 변경
-    mypageIcon.src = `//localhost:3000${userData.results[0].image}`;
+    mypageIcon.src = `${url}${userData.results[0].image}`;
 }
 
 export { loginCheck };

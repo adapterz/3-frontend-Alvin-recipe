@@ -13,10 +13,9 @@
     width: 15vw;
     height: 3vh;
     font-size: 16px;
-    padding-left: 2rem; /* input창 앞에 띄우기 */
-    border-radius: 0.5vw; /* input창 둥글게 */
-    border-color: black;
-
+    padding-left: 2rem;
+    border-radius: 0.5vw;
+    border-color: rgb(0, 0, 0);
     outline: none;
 }
 
@@ -30,7 +29,7 @@
     display: flex;
     justify-content: flex-start;
     width: 17vw;
-    color: gray;
+    color: rgb(128, 128, 128);
 }
 
 .push {
@@ -40,7 +39,7 @@
 }
 
 .push_font {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: none;
 }
 
@@ -48,7 +47,7 @@ input:hover {
     font-weight: 700;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
     .font_box {
         width: 70vw;
     }

@@ -32,14 +32,14 @@ main {
     font-size: 1.2rem;
     padding-left: 2rem; /* input창 앞에 띄우기 */
     border-radius: 50vw; /* input창 둥글게 */
-    border-color: black;
+    border-color: rgb(0, 0, 0);
     outline: none;
 }
 
 .search_button {
     position: absolute;
     right: 36vw;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: none;
 }
 
@@ -147,7 +147,7 @@ main {
     height: auto;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
     .search_box {
         margin-top: 10vh;
         height: 3vh;

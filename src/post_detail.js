@@ -11,6 +11,15 @@ if (login === false) {
     location.href = '/';
 }
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 // 게시글 인덱스 번호 가져오는 변수
 let id = document.location.pathname.split('/')[2];
 
@@ -45,7 +54,7 @@ const commentCount = document.createElement('p');
 const lineBox = document.createElement('div');
 const line = document.createElement('div');
 const imageBox = document.querySelector('#profileimage');
-const image = displayImage(`http://localhost:3000${userData.results[0].image}`);
+const image = displayImage(`${url}${userData.results[0].image}`);
 
 const editBox = document.createElement('div');
 const editItem = document.createElement('div');

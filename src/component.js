@@ -4,7 +4,7 @@ if (document.location.hostname === 'localhost') {
     url = 'http://localhost:3000';
 } else {
     // 배포모드의 url
-    url = 'a';
+    url = 'https://api.reci-p.com';
 }
 
 // 이미지 불러오기 펑션

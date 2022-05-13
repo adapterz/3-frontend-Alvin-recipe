@@ -10,6 +10,15 @@ if (login === false) {
     location.href = '/';
 }
 
+let url;
+if (document.location.hostname === 'localhost') {
+    // 개발모드의 url
+    url = 'http://localhost:3000';
+} else {
+    // 배포모드의 url
+    url = 'https://api.reci-p.com';
+}
+
 const imageUploadBtn = document.querySelector('#input-file');
 const registrationBtn = document.querySelector('#registration');
 const title = document.querySelector('#title').value;
@@ -38,19 +47,12 @@ textarea.addEventListener('paste', async function (e) {
     }
 });
 
-// 업로드 버튼 클릭 시 발생 이벤트
-// imageUploadBtn.addEventListener('change', async function () {
-//     for (let i = 1; i <= imageUploadBtn.files.length; i++) {
-//         await uploadFile(imageUploadBtn.files[i]);
-//     }
-// });
-
 // 업로드 버튼 눌렀을때 이미지 미리보기
 imageUploadBtn.addEventListener('change', async function () {
     for (let i = 0; i < imageUploadBtn.files.length; i++) {
         const data = await uploadFile(imageUploadBtn.files[i]);
         let img = document.createElement('img');
-        img.src = `//localhost:3000${data.imageURLs}`;
+        img.src = `${url}${data.imageURLs}`;
         document.querySelector('#contents').appendChild(img);
     }
 });
@@ -61,7 +63,7 @@ const uploadFile = async function (file) {
     const formData = new FormData();
     formData.append('image', file);
 
-    const getData = await fetch('http://localhost:3000/posts/image-upload', {
+    const getData = await fetch(`${url}/posts/image-upload`, {
         method: 'POST',
         body: formData
     });
